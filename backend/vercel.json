@@ -1,4 +1,12 @@
 {
-  "builds": [{ "src": "./index.ts", "use": "@vercel/node" }],
+  "builds": [
+    {
+      "src": "./index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "prisma": true
+      }
+    }
+  ],
   "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
