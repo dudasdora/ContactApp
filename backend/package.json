@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "prisma generate && vercel --prod",
-    "build": "prisma generate "
+    "vercel-build": "prisma generate --output public"
   },
   "keywords": [],
   "author": "",
