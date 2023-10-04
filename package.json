@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start-backend": "cd backend && ts-node-esm server.ts",
+    "start-frontend": "cd frontend && npm run start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
