@@ -13,6 +13,10 @@ const port = process.env.PORT || 8000
 
 const prisma = new PrismaClient()
 
+app.use('/', (request, response) => {
+  response.send('Server is running')
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
