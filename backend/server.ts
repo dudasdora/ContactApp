@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 import express from 'express'
-import contactRoutes from './routes/contact'
+import contactRoutes from './routes/contactRoutes'
 
 const app = express()
+
+app.use(express.json())
 
 const port = process.env.PORT || 8000
 
