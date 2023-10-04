@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "ts-node-esm ./server.ts"
+    "serve": "ts-node-esm ./index.ts"
   },
   "keywords": [],
   "author": "",
