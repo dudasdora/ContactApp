@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "prisma generate && vercel --prod",
-    "build": "nodemon index.ts"
+    "build": "prisma generate && vercel build"
   },
   "keywords": [],
   "author": "",
