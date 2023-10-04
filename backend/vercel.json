@@ -14,5 +14,5 @@
       "dest": "index.ts"
     }
   ],
-  "public": "public"
+  "public": true
 }
