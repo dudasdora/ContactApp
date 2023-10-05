@@ -18,9 +18,9 @@ const ContactList: React.FC = () => {
     !error ? (
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {data.map((contact: Contact) => (
-          <ListItem>
+          <ListItem key={contact.id}>
             <ListItemAvatar>
-              <Avatar></Avatar>
+              <Avatar />
             </ListItemAvatar>
             <ListItemText primary={contact.name} secondary={contact.phone} />
           </ListItem>

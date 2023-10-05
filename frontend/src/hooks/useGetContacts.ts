@@ -9,7 +9,11 @@ export const useGetContacts = () => {
     return res.json()
   }
 
-  const { data, error, isLoading, refetch } = useQuery('contacts', getContacts)
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: 'contacts',
+    queryFn: getContacts,
+    staleTime: 60000
+  })
 
   return { data, error, isLoading, refetch }
 }
