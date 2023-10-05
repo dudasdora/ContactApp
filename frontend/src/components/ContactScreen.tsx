@@ -1,11 +1,11 @@
 import React from 'react'
-import ContactHeader from './ContactHeader'
+import ContactBar from './ContactBar'
 import ContactList from './ContactList'
 
 const ContactScreen: React.FC = () => {
   return (
     <>
-      <ContactHeader />
+      <ContactBar />
       <ContactList />
     </>
   )
