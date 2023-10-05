@@ -17,7 +17,15 @@ import { ReactComponent as MoreIcon } from '../assets/icons/More.svg'
 import { ReactComponent as MuteIcon } from '../assets/icons/Mute.svg'
 import { ReactComponent as CallIcon } from '../assets/icons/Call.svg'
 
-const ContactListItem: React.FC<{ contact: Contact }> = ({ contact }) => {
+interface IContactListItem {
+  contact: Contact
+  handleDelete: (id: number) => Promise<void>
+}
+
+const ContactListItem: React.FC<IContactListItem> = ({
+  contact,
+  handleDelete
+}) => {
   const src = useMemo(() => {
     return contact.pictureUrl
       ? require(contact.pictureUrl)
@@ -52,7 +60,7 @@ const ContactListItem: React.FC<{ contact: Contact }> = ({ contact }) => {
             },
             {
               icon: DeleteIcon,
-              onClick: () => {},
+              onClick: () => handleDelete(contact.id),
               text: 'Remove'
             }
           ]}

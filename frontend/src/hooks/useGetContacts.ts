@@ -1,15 +1,16 @@
 import { useQuery } from 'react-query'
 import config from '../config'
+import { Contact } from '../types'
 
 const apiUrl = config.apiUrl
 
 export const useGetContacts = () => {
   const getContacts = async () => {
     const res = await fetch(`${apiUrl}/contact`)
-    return res.json()
+    return await res.json()
   }
 
-  const { data, error, isLoading, refetch } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery<Contact[]>({
     queryKey: 'contacts',
     queryFn: getContacts,
     staleTime: 60000
