@@ -1,20 +1,63 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@mui/material'
+import {
+  Avatar,
+  IconButton,
+  ListItem,
+  ListItemAvatar,
+  ListItemSecondaryAction,
+  ListItemText,
+  SvgIcon
+} from '@mui/material'
 import { Contact } from '../types'
 import { useMemo } from 'react'
+import NestedActions from '../ui/NestedActions'
+import { ReactComponent as FavouriteIcon } from '../assets/icons/Favourite.svg'
+import { ReactComponent as SettingsIcon } from '../assets/icons/Settings.svg'
+import { ReactComponent as DeleteIcon } from '../assets/icons/Delete.svg'
+import { ReactComponent as MoreIcon } from '../assets/icons/More.svg'
+import { ReactComponent as MuteIcon } from '../assets/icons/Mute.svg'
+import { ReactComponent as CallIcon } from '../assets/icons/Call.svg'
 
 const ContactListItem: React.FC<{ contact: Contact }> = ({ contact }) => {
   const src = useMemo(() => {
     return contact.pictureUrl
       ? require(contact.pictureUrl)
-      : require('../assets/Default.png')
+      : require('../assets/contactImages/Default.png')
   }, [contact])
 
   return (
-    <ListItem key={contact.id}>
+    <ListItem>
       <ListItemAvatar>
         <Avatar src={src} />
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
+      <ListItemSecondaryAction>
+        <IconButton>
+          <SvgIcon component={MuteIcon} />
+        </IconButton>
+        <IconButton>
+          <SvgIcon component={CallIcon} />
+        </IconButton>
+        <NestedActions
+          toggleActionsIcon={MoreIcon}
+          actions={[
+            {
+              icon: SettingsIcon,
+              onClick: () => {},
+              text: 'Edit'
+            },
+            {
+              icon: FavouriteIcon,
+              onClick: () => {},
+              text: 'Favourite'
+            },
+            {
+              icon: DeleteIcon,
+              onClick: () => {},
+              text: 'Remove'
+            }
+          ]}
+        ></NestedActions>
+      </ListItemSecondaryAction>
     </ListItem>
   )
 }

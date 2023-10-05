@@ -11,9 +11,9 @@ const ContactList: React.FC = () => {
 
   return !isLoading ? (
     !error ? (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List>
         {data.map((contact: Contact) => (
-          <ContactListItem contact={contact} />
+          <ContactListItem contact={contact} key={contact.id} />
         ))}
       </List>
     ) : (
