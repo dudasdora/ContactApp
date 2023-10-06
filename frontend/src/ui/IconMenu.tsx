@@ -1,10 +1,8 @@
 import {
   IconButton,
-  List,
-  ListItemButton,
   ListItemIcon,
-  ListItemText,
-  Popover,
+  Menu,
+  MenuItem,
   SvgIcon
 } from '@mui/material'
 import React, { useState } from 'react'
@@ -15,7 +13,7 @@ interface ListAction {
   icon: React.FC
 }
 
-const NestedActions: React.FC<{
+const IconMenu: React.FC<{
   toggleActionsIcon: React.FC
   actions: ListAction[]
 }> = ({ toggleActionsIcon, actions }) => {
@@ -36,7 +34,7 @@ const NestedActions: React.FC<{
       <IconButton onClick={handlePopoverOpen}>
         <SvgIcon component={toggleActionsIcon} />
       </IconButton>
-      <Popover
+      <Menu
         open={open}
         onClick={() => setAnchorEl(null)}
         anchorEl={anchorEl}
@@ -46,20 +44,18 @@ const NestedActions: React.FC<{
           horizontal: 'left'
         }}
       >
-        <List>
-          {actions.map((action) => (
-            <ListItemButton onClick={action.onClick} key={action.text}>
-              <ListItemIcon>
-                <SvgIcon component={action.icon} />
-              </ListItemIcon>
-              <ListItemText primary={action.text} />
-            </ListItemButton>
-          ))}
-        </List>
-      </Popover>
+        {actions.map((action) => (
+          <MenuItem onClick={action.onClick} key={action.text}>
+            <ListItemIcon>
+              <SvgIcon component={action.icon} />
+            </ListItemIcon>
+            {action.text}
+          </MenuItem>
+        ))}
+      </Menu>
     </>
   )
 }
 
-NestedActions.displayName = 'NestedActions'
-export default NestedActions
+IconMenu.displayName = 'IconMenu'
+export default IconMenu

@@ -8,7 +8,7 @@ import {
   SvgIcon
 } from '@mui/material'
 import { Contact, ContactFormData } from '../types'
-import NestedActions from '../ui/NestedActions'
+import IconMenu from '../ui/IconMenu'
 import { ReactComponent as FavouriteIcon } from '../assets/icons/Favourite.svg'
 import { ReactComponent as SettingsIcon } from '../assets/icons/Settings.svg'
 import { ReactComponent as DeleteIcon } from '../assets/icons/Delete.svg'
@@ -77,7 +77,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
         <IconButton>
           <SvgIcon component={CallIcon} />
         </IconButton>
-        <NestedActions
+        <IconMenu
           toggleActionsIcon={MoreIcon}
           actions={[
             {
@@ -104,7 +104,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
               text: 'Remove'
             }
           ]}
-        ></NestedActions>
+        ></IconMenu>
       </ListItemSecondaryAction>
     </ListItem>
   )
