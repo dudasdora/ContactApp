@@ -6,7 +6,6 @@ import multer from 'multer'
 export const uploadImage = async (request: Request, response: Response) => {
   try {
     const file = request.file as Express.Multer.File
-    console.log(file)
 
     const key = `${v4()}-${file.originalname}`
 
