@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { uploadPicture } from '../utils/uploadPicture'
 
-export const usePicture = (currentPictureUrl: string) => {
+export const usePicture = (currentPictureUrl: string | null) => {
   const [file, setFile] = useState(new Blob())
-  const [pictureUrl, setPictureUrl] = useState<string>(currentPictureUrl)
+  const [pictureUrl, setPictureUrl] = useState<string | null>(currentPictureUrl)
 
   const { mutateAsync } = useMutation(uploadPicture)
 

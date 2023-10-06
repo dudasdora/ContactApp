@@ -2,12 +2,13 @@ import { Avatar, Button, IconButton, SvgIcon } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { useGetAvatarSource } from '../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../assets/icons/Delete.svg'
+import { ReactComponent as ChangeIcon } from '../assets/icons/Change.svg'
 import { usePicture } from '../hooks/usePicture'
 import { UseFormSetValue } from 'react-hook-form'
 import { ContactFormData } from '../types'
 interface IPictureUpload {
   setValue: UseFormSetValue<ContactFormData>
-  defaultPictureUrl: string
+  defaultPictureUrl: string | null
 }
 const PictureUpload: React.FC<IPictureUpload> = ({
   setValue,
@@ -23,7 +24,12 @@ const PictureUpload: React.FC<IPictureUpload> = ({
     if (pictureUrl === '') {
       return '+ Add picture'
     }
-    return 'Change picture'
+    return (
+      <>
+        <SvgIcon component={ChangeIcon} />
+        Change picture
+      </>
+    )
   }, [pictureUrl])
 
   const src = useGetAvatarSource(pictureUrl)

@@ -4,7 +4,6 @@ import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Contact, ContactFormData } from '../types'
 import { contactFormSchema } from '../utils/contactFormSchema'
-import { defaultContactFormValues } from '../utils/defaultContactFormValues'
 import PictureUpload from './PictureUpload'
 
 interface IContactForm {
@@ -20,25 +19,12 @@ const ContactForm: React.FC<IContactForm> = ({
   onSubmit,
   contact
 }) => {
-  const defaultValues = defaultContactFormValues(contact)
+  const defaultValues = contactFormSchema.cast(contact)
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    setValue
-  } = useForm<ContactFormData>({
+  const { handleSubmit, control, setValue } = useForm<ContactFormData>({
     defaultValues,
     resolver: yupResolver(contactFormSchema)
   })
-
-  const nameInputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    if (nameInputRef.current && errors.name) {
-      nameInputRef.current.focus()
-    }
-  }, [errors.name])
 
   return (
     <div style={{ background: 'grey' }}>
@@ -53,7 +39,7 @@ const ContactForm: React.FC<IContactForm> = ({
           name="name"
           control={control}
           render={({ field }) => (
-            <TextField {...field} inputRef={nameInputRef} />
+            <TextField {...field} ref={control.register('name').ref} />
           )}
         />
 
