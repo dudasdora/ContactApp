@@ -1,12 +1,12 @@
 import express from 'express'
-
-const router = express.Router()
 import {
   createContact,
   deleteContact,
   updateContact,
   getContacts
 } from '../controllers/contactController'
+
+const router = express.Router()
 
 router.get('/', (request, response) => {
   return getContacts(request, response)

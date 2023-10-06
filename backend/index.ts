@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 
 import contactRoutes from './routes/contactRoutes'
+import imageRoutes from './routes/imageRoutes'
 
 const app = express()
 app.use(cors())
@@ -19,6 +20,7 @@ app.listen(port, () => {
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/contact', contactRoutes)
+app.use('/api/image', imageRoutes)
 
 app.on('close', () => {
   prisma.$disconnect()

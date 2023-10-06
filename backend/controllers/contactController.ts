@@ -1,12 +1,9 @@
-import express from 'express'
+import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export const getContacts = async (
-  request: express.Request,
-  response: express.Response
-) => {
+export const getContacts = async (request: Request, response: Response) => {
   try {
     const contacts = await prisma.contact.findMany()
 
@@ -16,10 +13,7 @@ export const getContacts = async (
   }
 }
 
-export const createContact = async (
-  request: express.Request,
-  response: express.Response
-) => {
+export const createContact = async (request: Request, response: Response) => {
   try {
     const contact = await prisma.contact.create({
       data: request.body
@@ -31,10 +25,7 @@ export const createContact = async (
   }
 }
 
-export const updateContact = async (
-  request: express.Request,
-  response: express.Response
-) => {
+export const updateContact = async (request: Request, response: Response) => {
   try {
     const contact = await prisma.contact.update({
       where: { id: Number(request.params.id) },
@@ -47,10 +38,7 @@ export const updateContact = async (
   }
 }
 
-export const deleteContact = async (
-  request: express.Request,
-  response: express.Response
-) => {
+export const deleteContact = async (request: Request, response: Response) => {
   try {
     const deleted = await prisma.contact.delete({
       where: { id: Number(request.params.id) }
