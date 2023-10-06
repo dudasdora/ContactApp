@@ -11,7 +11,7 @@ export const useGetContacts = () => {
   }
 
   const { data, error, isLoading, refetch } = useQuery<Contact[]>({
-    queryKey: 'contacts',
+    queryKey: ['contact','getAll'],
     queryFn: getContacts,
     staleTime: 60000
   })
