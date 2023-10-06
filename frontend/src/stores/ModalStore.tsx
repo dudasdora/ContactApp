@@ -28,7 +28,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
         <Modal open={isOpen} onClose={closeModal}>
           <Fade in={isOpen}>
             <Box>
-              <div> {modalContent}</div>
+              <> {modalContent}</>
             </Box>
           </Fade>
         </Modal>
