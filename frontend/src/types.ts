@@ -3,9 +3,9 @@ import { ReactNode } from 'react'
 export interface Contact {
   id: number
   name: string
-  email?: string
-  phone?: string
-  pictureUrl?: string
+  email: string | null
+  phone: string | null
+  pictureUrl: string | null
 }
 
 export type ModalContent = ReactNode
@@ -16,10 +16,7 @@ export interface ModalContextType {
   closeModal: () => void
 }
 
-export interface ContactFormData {
-  id?: number
-  name: string
-  email?: string
-  phone?: string
-  pictureUrl?: string
+export interface ContactFormData extends Omit<Contact, 'id' | 'name'> {
+  id?: number | null
+  name: string | null
 }
