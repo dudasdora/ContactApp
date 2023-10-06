@@ -38,6 +38,7 @@ const NestedActions: React.FC<{
       </IconButton>
       <Popover
         open={open}
+        onClick={() => setAnchorEl(null)}
         anchorEl={anchorEl}
         onClose={handlePopoverClose}
         anchorOrigin={{

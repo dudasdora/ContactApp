@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Contact, ContactFormData } from '../types'
 import { contactFormSchema } from '../utils/contactFormSchema'
 import { defaultContactFormValues } from '../utils/defaultContactFormValues'
+import PictureUpload from './PictureUpload'
 
 interface IContactForm {
   contact?: Contact
@@ -19,12 +20,15 @@ const ContactForm: React.FC<IContactForm> = ({
   onSubmit,
   contact
 }) => {
+  const defaultValues = defaultContactFormValues(contact)
+
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm<ContactFormData>({
-    defaultValues: defaultContactFormValues(contact),
+    defaultValues,
     resolver: yupResolver(contactFormSchema)
   })
 
@@ -39,6 +43,10 @@ const ContactForm: React.FC<IContactForm> = ({
   return (
     <div style={{ background: 'grey' }}>
       <h2>{title}</h2>
+      <PictureUpload
+        setValue={setValue}
+        defaultPictureUrl={defaultValues.pictureUrl}
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputLabel>Name</InputLabel>
         <Controller

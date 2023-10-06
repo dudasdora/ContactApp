@@ -21,6 +21,7 @@ import { deleteContact } from '../utils/deleteContat'
 import { updateContact } from '../utils/updateContact'
 import ContactForm from './ContactForm'
 import { useModalStore } from '../stores/ModalStore'
+import { useGetAvatarSource } from '../hooks/useGetAvatarSource'
 
 interface IContactListItem {
   contact: Contact
@@ -30,11 +31,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
   const queryClient = useQueryClient()
   const { openModal, closeModal } = useModalStore()
 
-  const src = useMemo(() => {
-    return contact.pictureUrl
-      ? require(contact.pictureUrl)
-      : require('../assets/contactImages/Default.png')
-  }, [contact])
+  const src = useGetAvatarSource(contact?.pictureUrl)
 
   const deleteContactmutation = useMutation(async (id: number) =>
     deleteContact(id)

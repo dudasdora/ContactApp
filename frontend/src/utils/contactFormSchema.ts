@@ -4,6 +4,7 @@ export const contactFormSchema = yup
   .shape({
     name: yup.string().required('Name is requried'),
     email: yup.string(),
-    phone: yup.string()
+    phone: yup.string(),
+    pictureUrl: yup.string()
   })
   .required()
