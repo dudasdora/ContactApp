@@ -8,7 +8,6 @@ import {
   SvgIcon
 } from '@mui/material'
 import { Contact, ContactFormData } from '../types'
-import { useMemo } from 'react'
 import NestedActions from '../ui/NestedActions'
 import { ReactComponent as FavouriteIcon } from '../assets/icons/Favourite.svg'
 import { ReactComponent as SettingsIcon } from '../assets/icons/Settings.svg'
@@ -29,17 +28,24 @@ interface IContactListItem {
 
 const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
   const queryClient = useQueryClient()
+
   const { openModal, closeModal } = useModalStore()
 
-  const src = useGetAvatarSource(contact?.pictureUrl)
+  const src = useGetAvatarSource(contact.pictureUrl)
 
   const deleteContactmutation = useMutation(async (id: number) =>
     deleteContact(id)
   )
 
   const handleDelete = async (id: number) => {
-    await deleteContactmutation.mutateAsync(id)
-    queryClient.invalidateQueries({ queryKey: ['contact', 'getAll'] })
+    await deleteContactmutation
+      .mutateAsync(id)
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ['contact', 'getAll'] })
+      })
+      .catch((error) => {
+        console.error('Error', error)
+      })
   }
 
   const updateContactmutation = useMutation(async (contact: ContactFormData) =>
@@ -47,9 +53,15 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
   )
 
   const handleUpdate = async (contact: ContactFormData) => {
-    await updateContactmutation.mutateAsync(contact)
-    queryClient.invalidateQueries({ queryKey: ['contact', 'getAll'] })
-    closeModal()
+    await updateContactmutation
+      .mutateAsync(contact)
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
+        closeModal()
+      })
+      .catch((error) => {
+        console.error('Error', error)
+      })
   }
 
   return (
@@ -76,7 +88,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
                     contact={contact}
                     onClose={closeModal}
                     onSubmit={handleUpdate}
-                    title="Add contact"
+                    title="Edit contact"
                   />
                 ),
               text: 'Edit'

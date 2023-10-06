@@ -10,14 +10,19 @@ const ContactBar: React.FC = () => {
   const { openModal, closeModal } = useModalStore()
   const queryClient = useQueryClient()
 
-  const createContactmutation = useMutation(async (contact: ContactFormData) =>
-    createContact(contact)
+  const { mutateAsync: create } = useMutation(
+    async (contact: ContactFormData) => createContact(contact)
   )
 
   const handlecreate = async (contact: ContactFormData) => {
-    await createContactmutation.mutateAsync(contact)
-    queryClient.invalidateQueries({ queryKey: ['contact', 'getAll'] })
-    closeModal()
+    create(contact)
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
+        closeModal()
+      })
+      .catch((error) => {
+        console.error('Error', error)
+      })
   }
 
   return (
