@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'Glysa';
+  src: url('./assets/fonts/Glysa.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('./assets/fonts/LexendDeca-VariableFont_wght.ttf') format('truetype');
+}
