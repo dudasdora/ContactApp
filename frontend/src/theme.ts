@@ -20,7 +20,7 @@ const theme = createTheme({
         root: {
           backgroundColor: '#141414'
         },
-        elevation1: { backgroundColor: '#2D2D2D' }
+        elevation1: { backgroundColor: '#1E1E1E' }
       }
     },
     MuiTypography: {
