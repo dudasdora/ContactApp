@@ -11,6 +11,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   toolBar: {
     backgroundColor: theme.palette.background.default,
     padding: '0 !important'
+  },
+  modalContent: {
+    width: '365px',
+    height: 'fit-content',
+    padding: theme.spacing(3),
+    borderRadius: `8px !important`
   }
 }))
 

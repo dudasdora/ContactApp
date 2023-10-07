@@ -27,41 +27,40 @@ const ContactForm: React.FC<IContactForm> = ({
   })
 
   return (
-    <div style={{ background: 'grey' }}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2>{title}</h2>
       <PictureUpload
         setValue={setValue}
         defaultPictureUrl={defaultValues.pictureUrl}
       />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <InputLabel>Name</InputLabel>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field }) => (
-            <TextField {...field} ref={control.register('name').ref} />
-          )}
-        />
 
-        <InputLabel>Phone number</InputLabel>
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field }) => <TextField {...field} />}
-        />
+      <InputLabel>Name</InputLabel>
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => (
+          <TextField {...field} ref={control.register('name').ref} />
+        )}
+      />
 
-        <InputLabel>Email address</InputLabel>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => <TextField {...field} />}
-        />
-        <Button variant="contained" color="primary" onClick={onClose}>
-          Cancel
-        </Button>
-        <Button type="submit">Done</Button>
-      </form>
-    </div>
+      <InputLabel>Phone number</InputLabel>
+      <Controller
+        name="phone"
+        control={control}
+        render={({ field }) => <TextField {...field} />}
+      />
+
+      <InputLabel>Email address</InputLabel>
+      <Controller
+        name="email"
+        control={control}
+        render={({ field }) => <TextField {...field} />}
+      />
+      <Button variant="contained" color="primary" onClick={onClose}>
+        Cancel
+      </Button>
+      <Button type="submit">Done</Button>
+    </form>
   )
 }
 

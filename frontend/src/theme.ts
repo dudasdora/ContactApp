@@ -15,6 +15,15 @@ const theme = createTheme({
   },
   spacing: 8,
   components: {
+    MuiModal: {
+      styleOverrides: {
+        root: {
+          paddingTop: '100px',
+          display: 'flex',
+          justifyContent: 'center'
+        }
+      }
+    },
     MuiPaper: {
       styleOverrides: {
         root: {
