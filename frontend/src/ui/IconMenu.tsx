@@ -3,7 +3,8 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
-  SvgIcon
+  SvgIcon,
+  Typography
 } from '@mui/material'
 import React, { useState } from 'react'
 
@@ -48,9 +49,12 @@ const IconMenu: React.FC<{
         {actions.map((action) => (
           <MenuItem onClick={action.onClick} key={action.text}>
             <ListItemIcon>
-              <SvgIcon component={action.icon} />
+              <SvgIcon
+                component={action.icon}
+                sx={{ width: '20px', height: '20px' }}
+              />
             </ListItemIcon>
-            {action.text}
+            <Typography variant="body1"> {action.text}</Typography>
           </MenuItem>
         ))}
       </Menu>

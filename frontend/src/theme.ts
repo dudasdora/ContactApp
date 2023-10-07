@@ -23,6 +23,8 @@ const theme = createTheme({
         elevation1: { backgroundColor: '#1E1E1E' }
       }
     },
+    MuiMenuItem: { styleOverrides: { root: { padding: '12px' } } },
+    MuiMenu: { styleOverrides: { list: { padding: 0 } } },
     MuiTypography: {
       styleOverrides: {
         //  Glysa - H1 - Medium - Font size: 32px - Line height: 48px - Letter spacing: 0%
