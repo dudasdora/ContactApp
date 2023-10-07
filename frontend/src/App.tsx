@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import './App.css'
 import ContactScreen from './components/ContactScreen'
 import { ModalProvider } from './stores/ModalStore'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme'
 
 const queryClient = new QueryClient()

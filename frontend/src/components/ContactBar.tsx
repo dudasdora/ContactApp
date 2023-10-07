@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Grid, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { useModalStore } from '../stores/ModalStore'
 import ContactForm from './ContactForm'
@@ -29,23 +29,29 @@ const ContactBar: React.FC = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Contacts
-          </Typography>
-          <Button
-            color="inherit"
-            onClick={() =>
-              openModal(
-                <ContactForm
-                  onClose={closeModal}
-                  onSubmit={handlecreate}
-                  title="Add contact"
-                />
-              )
-            }
-          >
-            + Add new
-          </Button>
+          <Grid container spacing={3}>
+            <Grid item xs></Grid>
+            <Grid item xs={10}>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Contacts
+              </Typography>
+              <Button
+                color="inherit"
+                onClick={() =>
+                  openModal(
+                    <ContactForm
+                      onClose={closeModal}
+                      onSubmit={handlecreate}
+                      title="Add contact"
+                    />
+                  )
+                }
+              >
+                + Add new
+              </Button>
+            </Grid>
+            <Grid item xs></Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     </Box>

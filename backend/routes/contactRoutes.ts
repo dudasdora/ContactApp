@@ -1,4 +1,4 @@
-import express from 'express'
+import { Router } from 'express'
 import {
   createContact,
   deleteContact,
@@ -6,7 +6,7 @@ import {
   getContacts
 } from '../controllers/contactController'
 
-const router = express.Router()
+const router = Router()
 
 router.get('/', (request, response) => {
   return getContacts(request, response)

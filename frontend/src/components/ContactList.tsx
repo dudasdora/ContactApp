@@ -1,4 +1,4 @@
-import { List } from '@mui/material'
+import { Grid, List } from '@mui/material'
 import React, { useMemo } from 'react'
 import { useGetContacts } from '../hooks/useGetContacts'
 import ErrorDisplay from '../ui/ErrorDisplay'
@@ -10,20 +10,28 @@ const ContactList: React.FC = () => {
 
   const contacts = useMemo(() => data ?? [], [data])
 
-  return isLoading ? (
-    <div>
-      <LoadingDisplay />
-    </div>
-  ) : error ? (
-    <div>
-      <ErrorDisplay />
-    </div>
-  ) : (
-    <List>
-      {contacts.map((contact) => (
-        <ContactListItem contact={contact} key={contact.id} />
-      ))}
-    </List>
+  return (
+    <Grid container spacing={0}>
+      <Grid item xs></Grid>
+      <Grid item xs={10}>
+        {isLoading ? (
+          <div>
+            <LoadingDisplay />
+          </div>
+        ) : error ? (
+          <div>
+            <ErrorDisplay />
+          </div>
+        ) : (
+          <List>
+            {contacts.map((contact) => (
+              <ContactListItem contact={contact} key={contact.id} />
+            ))}
+          </List>
+        )}
+      </Grid>
+      <Grid item xs></Grid>
+    </Grid>
   )
 }
 
