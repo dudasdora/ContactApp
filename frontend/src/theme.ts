@@ -5,8 +5,7 @@ const textBase = '#FFFFFF'
 const theme = createTheme({
   palette: {
     background: {
-      default: '#141414',
-      paper: '#2D2D2D'
+      default: '#141414'
     },
     text: {
       primary: textBase,
@@ -16,6 +15,14 @@ const theme = createTheme({
   },
   spacing: 8,
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#141414'
+        },
+        elevation1: { backgroundColor: '#2D2D2D' }
+      }
+    },
     MuiTypography: {
       styleOverrides: {
         //  Glysa - H1 - Medium - Font size: 32px - Line height: 48px - Letter spacing: 0%

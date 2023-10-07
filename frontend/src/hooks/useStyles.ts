@@ -4,9 +4,13 @@ import { makeStyles } from '@mui/styles'
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    paddingLeft: 0,
-    paddingRight: 0,
-    height: '100vh'
+    padding: '0 !important',
+    height: '100vh',
+    overflow: 'scroll'
+  },
+  toolBar: {
+    backgroundColor: theme.palette.background.default,
+    padding: '0 !important'
   }
 }))
 

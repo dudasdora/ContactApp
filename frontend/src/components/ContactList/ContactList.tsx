@@ -1,8 +1,8 @@
 import { Grid, List } from '@mui/material'
 import React, { useMemo } from 'react'
-import { useGetContacts } from '../hooks/useGetContacts'
-import ErrorDisplay from '../ui/ErrorDisplay'
-import LoadingDisplay from '../ui/LoadingDisplay'
+import { useGetContacts } from '../../hooks/useGetContacts'
+import ErrorDisplay from '../../ui/ErrorDisplay'
+import LoadingDisplay from '../../ui/LoadingDisplay'
 import ContactListItem from './ContactListItem'
 
 const ContactList: React.FC = () => {
@@ -11,8 +11,8 @@ const ContactList: React.FC = () => {
   const contacts = useMemo(() => data ?? [], [data])
 
   return (
-    <Grid container spacing={0}>
-      <Grid item xs></Grid>
+    <Grid container spacing={1}>
+      <Grid item xs={1}></Grid>
       <Grid item xs={10}>
         {isLoading ? (
           <div>
@@ -30,7 +30,7 @@ const ContactList: React.FC = () => {
           </List>
         )}
       </Grid>
-      <Grid item xs></Grid>
+      <Grid item xs={1}></Grid>
     </Grid>
   )
 }

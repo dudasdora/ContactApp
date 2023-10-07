@@ -7,20 +7,20 @@ import {
   ListItemText,
   SvgIcon
 } from '@mui/material'
-import { Contact, ContactFormData } from '../types'
-import IconMenu from '../ui/IconMenu'
-import { ReactComponent as FavouriteIcon } from '../assets/icons/Favourite.svg'
-import { ReactComponent as SettingsIcon } from '../assets/icons/Settings.svg'
-import { ReactComponent as DeleteIcon } from '../assets/icons/Delete.svg'
-import { ReactComponent as MoreIcon } from '../assets/icons/More.svg'
-import { ReactComponent as MuteIcon } from '../assets/icons/Mute.svg'
-import { ReactComponent as CallIcon } from '../assets/icons/Call.svg'
+import { Contact, ContactFormData } from '../../types'
+import IconMenu from '../../ui/IconMenu'
+import { ReactComponent as FavouriteIcon } from '../../assets/icons/Favourite.svg'
+import { ReactComponent as SettingsIcon } from '../../assets/icons/Settings.svg'
+import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
+import { ReactComponent as MoreIcon } from '../../assets/icons/More.svg'
+import { ReactComponent as MuteIcon } from '../../assets/icons/Mute.svg'
+import { ReactComponent as CallIcon } from '../../assets/icons/Call.svg'
 import { useMutation, useQueryClient } from 'react-query'
-import { deleteContact } from '../utils/deleteContat'
-import { updateContact } from '../utils/updateContact'
-import ContactForm from './ContactForm'
-import { useModalStore } from '../stores/ModalStore'
-import { useGetAvatarSource } from '../hooks/useGetAvatarSource'
+import { deleteContact } from '../../utils/deleteContat'
+import { updateContact } from '../../utils/updateContact'
+import ContactForm from '../ContactForm/ContactForm'
+import { useModalStore } from '../../stores/ModalStore'
+import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 
 interface IContactListItem {
   contact: Contact

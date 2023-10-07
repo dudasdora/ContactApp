@@ -35,6 +35,7 @@ const IconMenu: React.FC<{
         <SvgIcon component={toggleActionsIcon} />
       </IconButton>
       <Menu
+        elevation={1}
         open={open}
         onClick={() => setAnchorEl(null)}
         anchorEl={anchorEl}

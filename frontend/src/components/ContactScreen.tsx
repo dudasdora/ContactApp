@@ -1,7 +1,7 @@
 import React from 'react'
-import ContactBar from './ContactBar'
-import ContactList from './ContactList'
-import { Container } from '@mui/material'
+import ContactBar from './ContactBar/ContactBar'
+import ContactList from './ContactList/ContactList'
+import { Paper } from '@mui/material'
 import useStyles from '../hooks/useStyles'
 
 const ContactScreen: React.FC = () => {
@@ -9,10 +9,10 @@ const ContactScreen: React.FC = () => {
 
   return (
     <>
-      <Container className={classes.root}>
+      <Paper className={classes.root} elevation={0}>
         <ContactBar />
         <ContactList />
-      </Container>
+      </Paper>
     </>
   )
 }

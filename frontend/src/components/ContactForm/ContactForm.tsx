@@ -2,8 +2,8 @@ import { Button, InputLabel, TextField } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Contact, ContactFormData } from '../types'
-import { contactFormSchema } from '../utils/contactFormSchema'
+import { Contact, ContactFormData } from '../../types'
+import { contactFormSchema } from '../../utils/contactFormSchema'
 import PictureUpload from './PictureUpload'
 
 interface IContactForm {
@@ -56,7 +56,9 @@ const ContactForm: React.FC<IContactForm> = ({
           control={control}
           render={({ field }) => <TextField {...field} />}
         />
-        <Button onClick={onClose}> Cancel</Button>
+        <Button variant="contained" color="primary" onClick={onClose}>
+          Cancel
+        </Button>
         <Button type="submit">Done</Button>
       </form>
     </div>
