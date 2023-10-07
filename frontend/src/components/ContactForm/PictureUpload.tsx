@@ -7,7 +7,7 @@ import {
   SvgIcon,
   Typography
 } from '@mui/material'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
 import { ReactComponent as ChangeIcon } from '../../assets/icons/Change.svg'
