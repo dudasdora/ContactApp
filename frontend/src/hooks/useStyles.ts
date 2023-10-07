@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 'fit-content',
     padding: theme.spacing(3),
     borderRadius: `8px !important`
-  }
+  },
+  textField: {}
 }))
 
 export default useStyles

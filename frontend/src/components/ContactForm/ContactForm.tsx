@@ -1,6 +1,13 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Grid,
+  InputLabel,
+  TextField,
+  Typography
+} from '@mui/material'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Contact, ContactFormData } from '../../types'
 import { contactFormSchema } from '../../utils/contactFormSchema'
@@ -40,29 +47,34 @@ const ContactForm: React.FC<IContactForm> = ({
           />
         </Grid>
         <Grid item>
-          <CustomTextField
-            label="Name"
+          <Controller
             name="name"
             control={control}
             render={({ field }) => (
-              <TextField {...field} ref={control.register('name').ref} />
+              <CustomTextField
+                {...field}
+                label="Name"
+                ref={control.register('name').ref}
+              />
             )}
           />
         </Grid>
         <Grid item>
-          <CustomTextField
-            label="Phone number"
+          <Controller
             name="phone"
             control={control}
-            render={({ field }) => <TextField {...field} />}
+            render={({ field }) => (
+              <CustomTextField {...field} label="Phone number" />
+            )}
           />
         </Grid>
         <Grid item>
-          <CustomTextField
-            label="Email address"
+          <Controller
             name="email"
             control={control}
-            render={({ field }) => <TextField {...field} />}
+            render={({ field }) => (
+              <CustomTextField {...field} label="Email address" />
+            )}
           />
         </Grid>
         <Grid item>
