@@ -23,7 +23,15 @@ const theme = createTheme({
         elevation1: { backgroundColor: '#1E1E1E' }
       }
     },
-    MuiMenuItem: { styleOverrides: { root: { padding: '12px' } } },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          padding: '12px',
+          ':hover': { backgroundColor: '#232323' },
+          ':active': { backgroundColor: '#282828' }
+        }
+      }
+    },
     MuiMenu: { styleOverrides: { list: { padding: 0 } } },
     MuiTypography: {
       styleOverrides: {
