@@ -21,15 +21,15 @@ const PictureUpload: React.FC<IPictureUpload> = ({
   }, [pictureUrl, setValue])
 
   const addButtonText = useMemo(() => {
-    if (pictureUrl === '') {
-      return '+ Add picture'
+    if (pictureUrl) {
+      return (
+        <>
+          <SvgIcon component={ChangeIcon} />
+          Change picture
+        </>
+      )
     }
-    return (
-      <>
-        <SvgIcon component={ChangeIcon} />
-        Change picture
-      </>
-    )
+    return '+ Add picture'
   }, [pictureUrl])
 
   const src = useGetAvatarSource(pictureUrl)
@@ -48,7 +48,7 @@ const PictureUpload: React.FC<IPictureUpload> = ({
           }}
         />
       </Button>
-      {pictureUrl !== '' && (
+      {!!pictureUrl && (
         <IconButton onClick={() => setPictureUrl('')}>
           <SvgIcon component={DeleteIcon} />
         </IconButton>
