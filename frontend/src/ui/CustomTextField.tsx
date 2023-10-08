@@ -1,11 +1,11 @@
 import {
   BaseTextFieldProps,
+  Box,
   InputLabel,
   TextField,
   Typography
 } from '@mui/material'
 import { Ref, forwardRef } from 'react'
-import useStyles from '../hooks/useStyles'
 
 interface ICustomTextField extends BaseTextFieldProps {
   label: string
@@ -14,17 +14,15 @@ interface ICustomTextField extends BaseTextFieldProps {
 
 const CustomTextField: React.FC<ICustomTextField> = forwardRef(
   ({ label, ...props }, ref) => {
-    const classes = useStyles()
-
     return (
-      <>
+      <Box>
         <InputLabel>
           <Typography sx={{ lineHeight: 2 }} variant="body2">
             {label}
           </Typography>
         </InputLabel>
-        <TextField ref={ref} {...props} className={classes.textField} />
-      </>
+        <TextField sx={{ width: '100%' }} ref={ref} {...props} />
+      </Box>
     )
   }
 )
