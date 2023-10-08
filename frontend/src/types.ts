@@ -22,3 +22,5 @@ export interface ContactFormData extends Omit<Contact, 'id' | 'name'> {
 }
 
 export type CustomButtonVariant = 'primary' | 'secondary' | 'special'
+
+export type CustomButtonContent = 'label' | 'icon' | 'iconlabel'

@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  SvgIcon,
-  Typography
-} from '@mui/material'
+import { Avatar, Box, Grid, SvgIcon, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
@@ -15,6 +7,7 @@ import { ReactComponent as AddIcon } from '../../assets/icons/Add.svg'
 import { usePicture } from '../../hooks/usePicture'
 import { UseFormSetValue } from 'react-hook-form'
 import { ContactFormData } from '../../types'
+import CustomButton from '../../ui/CustomButton'
 interface IPictureUpload {
   setValue: UseFormSetValue<ContactFormData>
   defaultPictureUrl: string | null
@@ -37,7 +30,7 @@ const PictureUpload: React.FC<IPictureUpload> = ({
       </Grid>
       <Grid item xs alignSelf="center">
         <Box display="flex" justifyContent="space-between">
-          <Button component="label">
+          <CustomButton variant="primary" component="label" content="iconlabel">
             {pictureUrl ? (
               <>
                 <SvgIcon component={ChangeIcon} />
@@ -58,12 +51,16 @@ const PictureUpload: React.FC<IPictureUpload> = ({
                 }
               }}
             />
-          </Button>
+          </CustomButton>
 
           {!!pictureUrl && (
-            <IconButton onClick={() => setPictureUrl('')}>
+            <CustomButton
+              variant="primary"
+              content="icon"
+              onClick={() => setPictureUrl('')}
+            >
               <SvgIcon component={DeleteIcon} />
-            </IconButton>
+            </CustomButton>
           )}
         </Box>
       </Grid>

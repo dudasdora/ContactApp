@@ -71,10 +71,10 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
       <ListItemSecondaryAction>
-        <CustomButton variant="secondary">
+        <CustomButton content="icon" variant="secondary">
           <SvgIcon component={MuteIcon} />
         </CustomButton>
-        <CustomButton variant="secondary">
+        <CustomButton content="icon" variant="secondary">
           <SvgIcon component={CallIcon} />
         </CustomButton>
         <IconMenu

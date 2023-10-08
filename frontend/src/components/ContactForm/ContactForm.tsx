@@ -6,6 +6,7 @@ import { Contact, ContactFormData } from '../../types'
 import { contactFormSchema } from '../../utils/contactFormSchema'
 import PictureUpload from './PictureUpload'
 import CustomTextField from '../../ui/CustomTextField'
+import CustomButton from '../../ui/CustomButton'
 
 interface IContactForm {
   contact?: Contact
@@ -81,10 +82,12 @@ const ContactForm: React.FC<IContactForm> = ({
         </Grid>
         <Grid item>
           <Box display="flex" justifyContent="right" paddingTop={3} gap={1}>
-            <Button variant="contained" color="primary" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit">Done</Button>
+            <CustomButton variant="secondary" content="label" onClick={onClose}>
+              <Typography variant="body1"> Cancel</Typography>
+            </CustomButton>
+            <CustomButton variant="primary" content="label" type="submit">
+              <Typography variant="body1">Done</Typography>
+            </CustomButton>
           </Box>
         </Grid>
       </Grid>

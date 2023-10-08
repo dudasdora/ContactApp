@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '0 !important'
   },
   modalContent: {
-    width: '365px',
+    width: '316px',
     height: 'fit-content',
     padding: theme.spacing(3),
     borderRadius: `8px !important`

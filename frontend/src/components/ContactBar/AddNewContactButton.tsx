@@ -28,7 +28,8 @@ const AddNewContactButton: React.FC = () => {
 
   return (
     <CustomButton
-      variant="primary"
+      variant="special"
+      content="iconlabel"
       onClick={() =>
         openModal(
           <ContactForm

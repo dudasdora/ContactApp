@@ -47,7 +47,7 @@ const theme = createTheme({
     MuiModal: {
       styleOverrides: {
         root: {
-          paddingTop: '100px',
+          paddingTop: '80px',
           display: 'flex',
           justifyContent: 'center'
         }

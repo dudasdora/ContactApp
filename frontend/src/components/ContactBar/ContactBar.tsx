@@ -22,7 +22,7 @@ const ContactBar: React.FC = () => {
             justifyContent="right"
             alignItems="center"
           >
-            <CustomButton variant="secondary">
+            <CustomButton variant="secondary" content="icon">
               <SvgIcon component={GoBackIcon} />
             </CustomButton>
           </Grid>
@@ -37,7 +37,7 @@ const ContactBar: React.FC = () => {
             justifyContent="left"
             alignItems="center"
           >
-            <CustomButton variant="secondary">
+            <CustomButton variant="secondary" content="icon">
               <SvgIcon component={LightModeIcon} />
             </CustomButton>
           </Grid>

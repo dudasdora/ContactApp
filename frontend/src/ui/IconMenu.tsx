@@ -32,7 +32,11 @@ const IconMenu: React.FC<{
 
   return (
     <>
-      <CustomButton variant="secondary" onClick={handlePopoverOpen}>
+      <CustomButton
+        variant="secondary"
+        content="icon"
+        onClick={handlePopoverOpen}
+      >
         <SvgIcon component={toggleActionsIcon} />
       </CustomButton>
       <Menu
