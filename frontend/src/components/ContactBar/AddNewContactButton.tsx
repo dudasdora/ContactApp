@@ -1,10 +1,11 @@
-import { Button, SvgIcon, Typography } from '@mui/material'
+import { SvgIcon, Typography } from '@mui/material'
 import ContactForm from '../ContactForm/ContactForm'
 import { useModalStore } from '../../stores/ModalStore'
 import { useMutation, useQueryClient } from 'react-query'
 import { ContactFormData } from '../../types'
 import { createContact } from '../../utils/createContact'
 import { ReactComponent as AddIcon } from '../../assets/icons/Add.svg'
+import CustomButton from '../../ui/CustomButton'
 
 const AddNewContactButton: React.FC = () => {
   const { openModal, closeModal } = useModalStore()
@@ -26,8 +27,8 @@ const AddNewContactButton: React.FC = () => {
   }
 
   return (
-    <Button
-      color="inherit"
+    <CustomButton
+      variant="primary"
       onClick={() =>
         openModal(
           <ContactForm
@@ -48,7 +49,7 @@ const AddNewContactButton: React.FC = () => {
       >
         Add new
       </Typography>
-    </Button>
+    </CustomButton>
   )
 }
 AddNewContactButton.displayName = 'AddNewContactButton'

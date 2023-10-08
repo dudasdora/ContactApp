@@ -1,4 +1,4 @@
-import { AppBar, Grid, IconButton, SvgIcon, Toolbar } from '@mui/material'
+import { AppBar, Grid, SvgIcon, Toolbar } from '@mui/material'
 import React from 'react'
 import { ReactComponent as GoBackIcon } from '../../assets/icons/Back arrow.svg'
 import { ReactComponent as LightModeIcon } from '../../assets/icons/Light mode.svg'
@@ -6,6 +6,7 @@ import { ReactComponent as LightModeIcon } from '../../assets/icons/Light mode.s
 import useStyles from '../../hooks/useStyles'
 import ContactTitle from './ContactTitle'
 import ContactBarButtons from './ContactBarButtons'
+import CustomButton from '../../ui/CustomButton'
 
 const ContactBar: React.FC = () => {
   const classes = useStyles()
@@ -14,19 +15,31 @@ const ContactBar: React.FC = () => {
     <AppBar position="static">
       <Toolbar className={classes.toolBar}>
         <Grid container>
-          <Grid item xs={1} display="flex" justifyContent="right">
-            <IconButton>
+          <Grid
+            item
+            xs={1}
+            display="flex"
+            justifyContent="right"
+            alignItems="center"
+          >
+            <CustomButton variant="secondary">
               <SvgIcon component={GoBackIcon} />
-            </IconButton>
+            </CustomButton>
           </Grid>
           <Grid item xs={10} display="flex" justifyContent="space-between">
             <ContactTitle />
             <ContactBarButtons />
           </Grid>
-          <Grid item xs={1} display="flex" justifyContent="left">
-            <IconButton>
+          <Grid
+            item
+            xs={1}
+            display="flex"
+            justifyContent="left"
+            alignItems="center"
+          >
+            <CustomButton variant="secondary">
               <SvgIcon component={LightModeIcon} />
-            </IconButton>
+            </CustomButton>
           </Grid>
         </Grid>
       </Toolbar>
