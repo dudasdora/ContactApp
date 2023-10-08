@@ -8,7 +8,12 @@ import CustomButton from '../../ui/CustomButton'
 
 const ContactBar: React.FC = () => {
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        boxShadow: 'none'
+      }}
+    >
       <Toolbar
         sx={{
           backgroundColor: '#141414',
