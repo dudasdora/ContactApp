@@ -4,8 +4,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
-  ListItemText,
-  SvgIcon
+  ListItemText
 } from '@mui/material'
 import { Contact, ContactFormData } from '../../types'
 import IconMenu from '../../ui/IconMenu'

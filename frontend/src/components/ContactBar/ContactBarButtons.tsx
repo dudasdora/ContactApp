@@ -1,4 +1,4 @@
-import { Box, Grid, SvgIcon } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { ReactComponent as SettingsIcon } from '../../assets/icons/Settings.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/icons/Profile pic.svg'
 import AddNewContactButton from './AddNewContactButton'

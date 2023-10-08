@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, SvgIcon, Typography } from '@mui/material'
+import { Avatar, Box, Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'

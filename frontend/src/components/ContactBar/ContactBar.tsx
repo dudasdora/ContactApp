@@ -1,4 +1,4 @@
-import { AppBar, Grid, SvgIcon, Toolbar } from '@mui/material'
+import { AppBar, Grid, Toolbar } from '@mui/material'
 import React from 'react'
 import { ReactComponent as GoBackIcon } from '../../assets/icons/Back arrow.svg'
 import { ReactComponent as LightModeIcon } from '../../assets/icons/Light mode.svg'
