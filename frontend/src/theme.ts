@@ -29,6 +29,10 @@ const theme = createTheme({
     MuiInputBase: {
       styleOverrides: {
         root: {
+          fontFamily: 'Lexend Deca',
+          fontSize: '14px',
+          lineHeight: '20px',
+          letterSpacing: '1%',
           height: '40px',
           backgroundColor: '#1E1E1E',
           borderColor: '#282828',
@@ -88,21 +92,21 @@ const theme = createTheme({
           fontFamily: 'Lexend Deca',
           fontSize: '16px',
           lineHeight: '24px',
-          letterSpacing: '.1rem'
+          letterSpacing: '1%'
         },
         // Lexend Deca - Body - Regular - Font size: 14px - Line height: 20px - Letter spacing: 1%
         body1: {
           fontFamily: 'Lexend Deca',
           fontSize: '14px',
           lineHeight: '20px',
-          letterSpacing: '.1rem'
+          letterSpacing: '1%'
         },
         // Lexend Deca - Body - Regular - Font size: 12px - Line height: 12px - Letter spacing: 1%
         body2: {
           fontFamily: 'Lexend Deca',
           fontSize: '12px',
           lineHeight: '12px',
-          letterSpacing: '.1rem'
+          letterSpacing: '1%'
         }
       }
     }

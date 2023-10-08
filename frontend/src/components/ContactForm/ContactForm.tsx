@@ -47,6 +47,7 @@ const ContactForm: React.FC<IContactForm> = ({
               <CustomTextField
                 {...field}
                 label="Name"
+                placeholder="Jamie Wright"
                 ref={control.register('name').ref}
               />
             )}
@@ -57,7 +58,11 @@ const ContactForm: React.FC<IContactForm> = ({
             name="phone"
             control={control}
             render={({ field }) => (
-              <CustomTextField {...field} label="Phone number" />
+              <CustomTextField
+                {...field}
+                label="Phone number"
+                placeholder="+01 234 5678"
+              />
             )}
           />
         </Grid>
@@ -66,7 +71,11 @@ const ContactForm: React.FC<IContactForm> = ({
             name="email"
             control={control}
             render={({ field }) => (
-              <CustomTextField {...field} label="Email address" />
+              <CustomTextField
+                {...field}
+                label="Email address"
+                placeholder="jamie.wright@mail.com"
+              />
             )}
           />
         </Grid>
