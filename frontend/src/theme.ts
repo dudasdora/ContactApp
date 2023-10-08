@@ -15,6 +15,31 @@ const theme = createTheme({
   },
   spacing: 8,
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            backgroundColor: '#282828',
+            borderColor: '#414141'
+          }
+        },
+        notchedOutline: { border: 'none' }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          height: '40px',
+          backgroundColor: '#1E1E1E',
+          borderColor: '#282828',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          ':hover': {
+            borderColor: '#373737'
+          }
+        }
+      }
+    },
     MuiModal: {
       styleOverrides: {
         root: {
