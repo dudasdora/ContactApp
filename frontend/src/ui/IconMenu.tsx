@@ -1,5 +1,4 @@
 import {
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -7,6 +6,7 @@ import {
   Typography
 } from '@mui/material'
 import React, { useState } from 'react'
+import CustomButton from './CustomButton'
 
 interface ListAction {
   onClick: () => void
@@ -32,9 +32,9 @@ const IconMenu: React.FC<{
 
   return (
     <>
-      <IconButton onClick={handlePopoverOpen}>
+      <CustomButton variant="secondary" onClick={handlePopoverOpen}>
         <SvgIcon component={toggleActionsIcon} />
-      </IconButton>
+      </CustomButton>
       <Menu
         elevation={1}
         open={open}

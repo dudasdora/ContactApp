@@ -1,6 +1,5 @@
 import {
   Avatar,
-  IconButton,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
@@ -21,6 +20,7 @@ import { updateContact } from '../../utils/updateContact'
 import ContactForm from '../ContactForm/ContactForm'
 import { useModalStore } from '../../stores/ModalStore'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
+import CustomButton from '../../ui/CustomButton'
 
 interface IContactListItem {
   contact: Contact
@@ -71,12 +71,12 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
       <ListItemSecondaryAction>
-        <IconButton>
+        <CustomButton variant="secondary">
           <SvgIcon component={MuteIcon} />
-        </IconButton>
-        <IconButton>
+        </CustomButton>
+        <CustomButton variant="secondary">
           <SvgIcon component={CallIcon} />
-        </IconButton>
+        </CustomButton>
         <IconMenu
           toggleActionsIcon={MoreIcon}
           actions={[
