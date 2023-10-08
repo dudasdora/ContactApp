@@ -36,9 +36,9 @@ const IconMenu: React.FC<{
         variant="secondary"
         content="icon"
         onClick={handlePopoverOpen}
-      >
-        <SvgIcon component={toggleActionsIcon} />
-      </CustomButton>
+        icon={toggleActionsIcon}
+      />
+
       <Menu
         elevation={1}
         open={open}

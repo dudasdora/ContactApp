@@ -1,4 +1,4 @@
-import { SvgIcon, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import ContactForm from '../ContactForm/ContactForm'
 import { useModalStore } from '../../stores/ModalStore'
 import { useMutation, useQueryClient } from 'react-query'
@@ -27,30 +27,42 @@ const AddNewContactButton: React.FC = () => {
   }
 
   return (
-    <CustomButton
-      variant="special"
-      content="iconlabel"
-      onClick={() =>
-        openModal(
-          <ContactForm
-            onClose={closeModal}
-            onSubmit={handlecreate}
-            title="Add contact"
-          />
-        )
-      }
-    >
-      <SvgIcon component={AddIcon} />
+    <>
+      <Box sx={{ display: { xs: 'inline-block', sm: 'none' } }}>
+        <CustomButton
+          variant="special"
+          content="iconlabel"
+          icon={AddIcon}
+          onClick={() =>
+            openModal(
+              <ContactForm
+                onClose={closeModal}
+                onSubmit={handlecreate}
+                title="Add contact"
+              />
+            )
+          }
+        />
+      </Box>
       {/* remove text for mobile size */}
-      <Typography
-        sx={{
-          display: { xs: 'none', sm: 'inline-block' }
-        }}
-        variant="body1"
-      >
-        Add new
-      </Typography>
-    </CustomButton>
+      <Box sx={{ display: { xs: 'none', sm: 'inline-block' } }}>
+        <CustomButton
+          variant="special"
+          content="iconlabel"
+          icon={AddIcon}
+          label={'Add new'}
+          onClick={() =>
+            openModal(
+              <ContactForm
+                onClose={closeModal}
+                onSubmit={handlecreate}
+                title="Add contact"
+              />
+            )
+          }
+        />
+      </Box>
+    </>
   )
 }
 AddNewContactButton.displayName = 'AddNewContactButton'

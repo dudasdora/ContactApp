@@ -71,12 +71,8 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
       <ListItemSecondaryAction>
-        <CustomButton content="icon" variant="secondary">
-          <SvgIcon component={MuteIcon} />
-        </CustomButton>
-        <CustomButton content="icon" variant="secondary">
-          <SvgIcon component={CallIcon} />
-        </CustomButton>
+        <CustomButton content="icon" variant="secondary" icon={MuteIcon} />
+        <CustomButton content="icon" variant="secondary" icon={CallIcon} />
         <IconMenu
           toggleActionsIcon={MoreIcon}
           actions={[

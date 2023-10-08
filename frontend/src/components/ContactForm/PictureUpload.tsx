@@ -30,18 +30,13 @@ const PictureUpload: React.FC<IPictureUpload> = ({
       </Grid>
       <Grid item xs alignSelf="center">
         <Box display="flex" justifyContent="space-between">
-          <CustomButton variant="primary" component="label" content="iconlabel">
-            {pictureUrl ? (
-              <>
-                <SvgIcon component={ChangeIcon} />
-                <Typography>Change picture</Typography>
-              </>
-            ) : (
-              <>
-                <SvgIcon component={AddIcon} />
-                <Typography>Add picture</Typography>
-              </>
-            )}
+          <CustomButton
+            variant="primary"
+            component="label"
+            content="iconlabel"
+            icon={pictureUrl ? ChangeIcon : AddIcon}
+            label={pictureUrl ? 'Change picture' : 'Add picture'}
+          >
             <input
               hidden
               type="file"
@@ -58,9 +53,8 @@ const PictureUpload: React.FC<IPictureUpload> = ({
               variant="primary"
               content="icon"
               onClick={() => setPictureUrl('')}
-            >
-              <SvgIcon component={DeleteIcon} />
-            </CustomButton>
+              icon={DeleteIcon}
+            />
           )}
         </Box>
       </Grid>

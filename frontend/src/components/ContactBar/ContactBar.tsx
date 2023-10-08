@@ -18,9 +18,11 @@ const ContactBar: React.FC = () => {
             justifyContent="right"
             alignItems="center"
           >
-            <CustomButton variant="secondary" content="icon">
-              <SvgIcon component={GoBackIcon} />
-            </CustomButton>
+            <CustomButton
+              variant="secondary"
+              content="icon"
+              icon={GoBackIcon}
+            />
           </Grid>
           <Grid item xs={10} display="flex" justifyContent="space-between">
             <ContactTitle />
@@ -33,9 +35,11 @@ const ContactBar: React.FC = () => {
             justifyContent="left"
             alignItems="center"
           >
-            <CustomButton variant="secondary" content="icon">
-              <SvgIcon component={LightModeIcon} />
-            </CustomButton>
+            <CustomButton
+              variant="secondary"
+              content="icon"
+              icon={LightModeIcon}
+            ></CustomButton>
           </Grid>
         </Grid>
       </Toolbar>

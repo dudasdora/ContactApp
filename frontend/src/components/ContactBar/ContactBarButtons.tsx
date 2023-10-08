@@ -9,14 +9,14 @@ const ContactBarButtons: React.FC = () => {
     <Box display="flex">
       <Grid container alignContent="center" spacing={1} padding={2}>
         <Grid item>
-          <CustomButton variant="secondary" content="icon">
-            <SvgIcon component={SettingsIcon} />
-          </CustomButton>
+          <CustomButton
+            variant="secondary"
+            content="icon"
+            icon={SettingsIcon}
+          />
         </Grid>
         <Grid item>
-          <CustomButton variant="secondary" content="icon">
-            <SvgIcon component={ProfileIcon} />
-          </CustomButton>
+          <CustomButton variant="secondary" content="icon" icon={ProfileIcon} />
         </Grid>
         <Grid item>
           <AddNewContactButton />
