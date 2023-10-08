@@ -1,4 +1,4 @@
-import { Box, Button, ButtonProps, SxProps, alpha } from '@mui/material'
+import { Box, Button, ButtonProps } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
 import { CustomButtonVariant } from '../types'
 import { getSxPropsForButton } from './styles/getSxPropsForButton'
@@ -21,7 +21,7 @@ const CustomButton: React.FC<ICustomButton> = ({
         sx={
           variant === 'special'
             ? { padding: '8px', display: 'flex', alignItems: 'center' }
-            : {}
+            : { display: 'flex', alignItems: 'center', gap: '8px' }
         }
       >
         {children}
