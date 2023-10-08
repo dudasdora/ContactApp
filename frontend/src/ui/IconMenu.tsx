@@ -1,11 +1,13 @@
 import {
+  Box,
+  BoxProps,
   ListItemIcon,
   Menu,
   MenuItem,
   SvgIcon,
   Typography
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomButton from './CustomButton'
 
 interface ListAction {
@@ -13,22 +15,38 @@ interface ListAction {
   text: string
   icon: React.FC
 }
-
-const IconMenu: React.FC<{
+interface IIconMenu {
   toggleActionsIcon: React.FC
   actions: ListAction[]
-}> = ({ toggleActionsIcon, actions }) => {
+  onClick?: () => void
+  onClose?: () => void
+}
+const IconMenu: React.FC<IIconMenu> = ({
+  toggleActionsIcon,
+  actions,
+  onClick,
+  onClose
+}) => {
   const [anchorEl, setAnchorEl] = useState(null)
 
   const handlePopoverOpen = (event: any) => {
     event.stopPropagation()
     setAnchorEl(event.currentTarget)
+    onClick?.()
   }
 
   const handlePopoverClose = () => {
     setAnchorEl(null)
   }
   const open = Boolean(anchorEl)
+
+  useEffect(() => {
+    if (open) {
+      onClick?.()
+    } else {
+      onClose?.()
+    }
+  }, [onClick, onClose, open])
 
   return (
     <>

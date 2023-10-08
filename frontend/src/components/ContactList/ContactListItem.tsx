@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Box,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
@@ -21,12 +22,15 @@ import ContactForm from '../ContactForm/ContactForm'
 import { useModalStore } from '../../stores/ModalStore'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import CustomButton from '../../ui/CustomButton'
+import { useState } from 'react'
 
 interface IContactListItem {
   contact: Contact
 }
 
 const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
+  const [active, setActive] = useState<boolean>(false)
+
   const queryClient = useQueryClient()
 
   const { openModal, closeModal } = useModalStore()
@@ -41,7 +45,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
     await deleteContactmutation
       .mutateAsync(id)
       .then(() => {
-        queryClient.invalidateQueries({ queryKey: ['contact', 'getAll'] })
+        queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
       })
       .catch((error) => {
         console.error('Error', error)
@@ -65,43 +69,65 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
   }
 
   return (
-    <ListItem>
+    <ListItem
+      sx={{
+        ':hover ': {
+          '& .secondaryActionsFocus': {
+            opacity: 100
+          }
+        }
+      }}
+    >
       <ListItemAvatar>
         <Avatar src={src} />
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
-      <ListItemSecondaryAction>
-        <CustomButton content="icon" variant="secondary" icon={MuteIcon} />
-        <CustomButton content="icon" variant="secondary" icon={CallIcon} />
-        <IconMenu
-          toggleActionsIcon={MoreIcon}
-          actions={[
-            {
-              icon: SettingsIcon,
-              onClick: () =>
-                openModal(
-                  <ContactForm
-                    contact={contact}
-                    onClose={closeModal}
-                    onSubmit={handleUpdate}
-                    title="Edit contact"
-                  />
-                ),
-              text: 'Edit'
-            },
-            {
-              icon: FavouriteIcon,
-              onClick: () => {},
-              text: 'Favourite'
-            },
-            {
-              icon: DeleteIcon,
-              onClick: () => handleDelete(contact.id),
-              text: 'Remove'
-            }
-          ]}
-        ></IconMenu>
-      </ListItemSecondaryAction>
+      <Box
+        className="secondaryActionsFocus"
+        sx={{
+          opacity: active ? 100 : 0,
+          ':focus': {
+            opacity: 100
+          }
+        }}
+      >
+        <ListItemSecondaryAction>
+          <CustomButton content="icon" variant="secondary" icon={MuteIcon} />
+          <CustomButton content="icon" variant="secondary" icon={CallIcon} />
+          <IconMenu
+            onClick={() => setActive(true)}
+            onClose={() => {
+              setActive(false)
+            }}
+            toggleActionsIcon={MoreIcon}
+            actions={[
+              {
+                icon: SettingsIcon,
+                onClick: () =>
+                  openModal(
+                    <ContactForm
+                      contact={contact}
+                      onClose={closeModal}
+                      onSubmit={handleUpdate}
+                      title="Edit contact"
+                    />
+                  ),
+                text: 'Edit'
+              },
+              {
+                icon: FavouriteIcon,
+                onClick: () => {},
+                text: 'Favourite'
+              },
+              {
+                icon: DeleteIcon,
+                onClick: () => handleDelete(contact.id),
+                text: 'Remove'
+              }
+            ]}
+          ></IconMenu>
+        </ListItemSecondaryAction>
+      </Box>
     </ListItem>
   )
 }
