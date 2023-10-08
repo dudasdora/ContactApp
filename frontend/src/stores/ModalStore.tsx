@@ -1,15 +1,12 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { Fade, Modal, Paper } from '@mui/material'
 import { ModalContent, ModalContextType } from '../types'
-import useStyles from '../hooks/useStyles'
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   children
 }) => {
-  const classes = useStyles()
-
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [modalContent, setModalContent] = useState<ModalContent | null>(null)
 
@@ -29,7 +26,15 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
       {isOpen && (
         <Modal open={isOpen} onClose={closeModal}>
           <Fade in={isOpen}>
-            <Paper elevation={0} className={classes.modalContent}>
+            <Paper
+              elevation={0}
+              sx={{
+                width: '316px',
+                height: 'fit-content',
+                padding: '24px',
+                borderRadius: `8px`
+              }}
+            >
               {modalContent}
             </Paper>
           </Fade>
