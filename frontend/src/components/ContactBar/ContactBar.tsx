@@ -9,7 +9,12 @@ import CustomButton from '../../ui/CustomButton'
 const ContactBar: React.FC = () => {
   return (
     <AppBar position="static">
-      <Toolbar sx={{ backgroundColor: '#141414', padding: '0' }}>
+      <Toolbar
+        sx={{
+          backgroundColor: '#141414',
+          padding: { xs: '0', sm: 0, md: 0, lg: 0 }
+        }}
+      >
         <Grid container>
           <Grid
             item
