@@ -24,7 +24,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
       {children}
       {isOpen && (
-        <Modal open={isOpen} onClose={closeModal}>
+        <Modal open={isOpen} onClose={closeModal} sx={{ overflow: 'scroll' }}>
           <Fade in={isOpen}>
             <Paper
               elevation={0}

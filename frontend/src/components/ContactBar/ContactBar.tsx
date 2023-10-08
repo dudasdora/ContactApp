@@ -12,7 +12,7 @@ const ContactBar: React.FC = () => {
       <Toolbar
         sx={{
           backgroundColor: '#141414',
-          padding: { xs: '0', sm: 0, md: 0, lg: 0 }
+          padding: { xs: 0, sm: 0, md: 0, lg: 0 }
         }}
       >
         <Grid container>
@@ -29,7 +29,15 @@ const ContactBar: React.FC = () => {
               icon={GoBackIcon}
             />
           </Grid>
-          <Grid item xs={10} display="flex" justifyContent="space-between">
+          <Grid
+            item
+            xs={10}
+            display="flex"
+            sx={{
+              flexDirection: { xs: 'column', sm: 'row' },
+              justifyContent: 'space-between'
+            }}
+          >
             <ContactTitle />
             <ContactBarButtons />
           </Grid>

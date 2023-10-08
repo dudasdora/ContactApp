@@ -7,7 +7,14 @@ import CustomButton from '../../ui/CustomButton'
 const ContactBarButtons: React.FC = () => {
   return (
     <Box display="flex">
-      <Grid container alignContent="center" spacing={1} padding={2}>
+      <Grid
+        container
+        spacing={1}
+        padding={2}
+        sx={{
+          justifyContent: { xs: 'center', sm: 'flex-start' }
+        }}
+      >
         <Grid item>
           <CustomButton
             variant="secondary"

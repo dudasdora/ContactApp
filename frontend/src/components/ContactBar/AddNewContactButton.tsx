@@ -27,42 +27,21 @@ const AddNewContactButton: React.FC = () => {
   }
 
   return (
-    <>
-      <Box sx={{ display: { xs: 'inline-block', sm: 'none' } }}>
-        <CustomButton
-          variant="special"
-          content="iconlabel"
-          icon={AddIcon}
-          onClick={() =>
-            openModal(
-              <ContactForm
-                onClose={closeModal}
-                onSubmit={handlecreate}
-                title="Add contact"
-              />
-            )
-          }
-        />
-      </Box>
-      {/* remove text for mobile size */}
-      <Box sx={{ display: { xs: 'none', sm: 'inline-block' } }}>
-        <CustomButton
-          variant="special"
-          content="iconlabel"
-          icon={AddIcon}
-          label={'Add new'}
-          onClick={() =>
-            openModal(
-              <ContactForm
-                onClose={closeModal}
-                onSubmit={handlecreate}
-                title="Add contact"
-              />
-            )
-          }
-        />
-      </Box>
-    </>
+    <CustomButton
+      variant="special"
+      content="iconlabel"
+      icon={AddIcon}
+      label={'Add new'}
+      onClick={() =>
+        openModal(
+          <ContactForm
+            onClose={closeModal}
+            onSubmit={handlecreate}
+            title="Add contact"
+          />
+        )
+      }
+    />
   )
 }
 AddNewContactButton.displayName = 'AddNewContactButton'
