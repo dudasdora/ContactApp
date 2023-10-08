@@ -20,3 +20,5 @@ export interface ContactFormData extends Omit<Contact, 'id' | 'name'> {
   id?: number | null
   name: string | null
 }
+
+export type CustomButtonVariant = 'primary' | 'secondary' | 'special'
