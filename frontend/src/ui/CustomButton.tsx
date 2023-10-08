@@ -1,5 +1,5 @@
 import { Box, Button, ButtonProps } from '@mui/material'
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 import { CustomButtonContent, CustomButtonVariant } from '../types'
 import { useGetSxPropsForButton } from './styles/useGetSxPropsForButton'
 
