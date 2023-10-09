@@ -4,6 +4,7 @@ import { Contact, ContactFormData } from '../types'
 import { uploadPicture } from '../utils/uploadPicture'
 import { useModalStore } from '../stores/ModalStore'
 import { deletePicture } from '../utils/deletePicture'
+import { useCallback } from 'react'
 
 export const useUpdateContact = () => {
   const queryClient = useQueryClient()
@@ -18,37 +19,43 @@ export const useUpdateContact = () => {
     async (pictureUrl: string) => deletePicture(pictureUrl)
   )
 
-  const update = async (contact: ContactFormData) => {
-    await mutateUpdate(contact)
-      .then(() => {
-        queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
-        closeModal()
-      })
-      .catch((error) => {
-        console.error('Error', error)
-      })
-  }
-
-  return async (
-    contact: ContactFormData,
-    file: Blob | null,
-    pictureUrl: string | null,
-    originalContact?: Contact
-  ) => {
-    if (file !== null && originalContact?.pictureUrl) {
-      await mutateDeletePicture(originalContact.pictureUrl).catch((error) => {
-        console.error('Error:', error)
-      })
-    }
-    if (file !== null && process.env.NODE_ENV === 'production') {
-      await upload(file)
-        .then((response) => response.data.pictureUrl)
-        .then((response) => update({ ...contact, pictureUrl: response }))
+  const update = useCallback(
+    async (contact: ContactFormData) => {
+      await mutateUpdate(contact)
+        .then(() => {
+          queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
+          closeModal()
+        })
         .catch((error) => {
+          console.error('Error', error)
+        })
+    },
+    [closeModal, mutateUpdate, queryClient]
+  )
+
+  return useCallback(
+    async (
+      contact: ContactFormData,
+      file: Blob | null,
+      pictureUrl: string | null,
+      originalContact?: Contact
+    ) => {
+      if (file !== null && originalContact?.pictureUrl) {
+        await mutateDeletePicture(originalContact.pictureUrl).catch((error) => {
           console.error('Error:', error)
         })
-    } else {
-      await update({ ...contact, pictureUrl })
-    }
-  }
+      }
+      if (file !== null && process.env.NODE_ENV === 'production') {
+        await upload(file)
+          .then((response) => response.data.pictureUrl)
+          .then((response) => update({ ...contact, pictureUrl: response }))
+          .catch((error) => {
+            console.error('Error:', error)
+          })
+      } else {
+        await update({ ...contact, pictureUrl })
+      }
+    },
+    [mutateDeletePicture, update, upload]
+  )
 }

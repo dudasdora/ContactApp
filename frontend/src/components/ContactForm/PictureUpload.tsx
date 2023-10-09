@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
 import { ReactComponent as ChangeIcon } from '../../assets/icons/Change.svg'
@@ -28,6 +28,13 @@ const PictureUpload: React.FC<IPictureUpload> = ({
 
   const avatarSrc = useGetAvatarSource(pictureUrl)
 
+  const handleChangeFile = async (event: any) => {
+    if (event.target.files) {
+      setFile(event.target.files[0])
+      setPictureUrl(await storePictureLocal(event.target.files[0]))
+    }
+  }
+
   return (
     <Grid container spacing={2}>
       <Grid item xs="auto">
@@ -42,16 +49,7 @@ const PictureUpload: React.FC<IPictureUpload> = ({
             icon={pictureUrl ? ChangeIcon : AddIcon}
             label={pictureUrl ? 'Change picture' : 'Add picture'}
           >
-            <input
-              hidden
-              type="file"
-              onChange={async (e) => {
-                if (e.target.files) {
-                  setFile(e.target.files[0])
-                  setPictureUrl(await storePictureLocal(e.target.files[0]))
-                }
-              }}
-            />
+            <input hidden type="file" onChange={handleChangeFile} />
           </CustomButton>
 
           {!!pictureUrl && (

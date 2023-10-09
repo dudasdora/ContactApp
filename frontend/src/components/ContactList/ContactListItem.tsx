@@ -17,7 +17,7 @@ import ContactForm from '../ContactForm/ContactForm'
 import { useModalStore } from '../../stores/ModalStore'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import CustomButton from '../../ui/CustomButton'
-import { useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import CustomAvatar from '../../ui/CustomAvatar'
 import { useDeleteContact } from '../../hooks/useDeleteContact'
 import { useUpdateContact } from '../../hooks/useUpdateContact'
@@ -35,6 +35,40 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
 
   const handleDelete = useDeleteContact()
   const handleUpdate = useUpdateContact()
+
+  const handleEdit = useCallback(
+    () =>
+      openModal(
+        <ContactForm
+          contact={contact}
+          onClose={closeModal}
+          onSubmit={handleUpdate}
+          title="Edit contact"
+        />
+      ),
+    [closeModal, contact, handleUpdate, openModal]
+  )
+
+  const actions = useMemo(
+    () => [
+      {
+        icon: SettingsIcon,
+        onClick: handleEdit,
+        text: 'Edit'
+      },
+      {
+        icon: FavouriteIcon,
+        onClick: () => {},
+        text: 'Favourite'
+      },
+      {
+        icon: DeleteIcon,
+        onClick: () => handleDelete(contact),
+        text: 'Remove'
+      }
+    ],
+    [contact, handleDelete, handleEdit]
+  )
 
   return (
     <ListItem
@@ -65,36 +99,10 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
           <CustomButton content="icon" variant="secondary" icon={CallIcon} />
           <IconMenu
             onClick={() => setActive(true)}
-            onClose={() => {
-              setActive(false)
-            }}
+            onClose={() => setActive(false)}
             toggleActionsIcon={MoreIcon}
-            actions={[
-              {
-                icon: SettingsIcon,
-                onClick: () =>
-                  openModal(
-                    <ContactForm
-                      contact={contact}
-                      onClose={closeModal}
-                      onSubmit={handleUpdate}
-                      title="Edit contact"
-                    />
-                  ),
-                text: 'Edit'
-              },
-              {
-                icon: FavouriteIcon,
-                onClick: () => {},
-                text: 'Favourite'
-              },
-              {
-                icon: DeleteIcon,
-                onClick: () => handleDelete(contact),
-                text: 'Remove'
-              }
-            ]}
-          ></IconMenu>
+            actions={actions}
+          />
         </ListItemSecondaryAction>
       </Box>
     </ListItem>

@@ -3,11 +3,12 @@ import { useModalStore } from '../../stores/ModalStore'
 import { ReactComponent as AddIcon } from '../../assets/icons/Add.svg'
 import CustomButton from '../../ui/CustomButton'
 import { useCreateContact } from '../../hooks/useCreateContact'
+import React from 'react'
 
 const AddNewContactButton: React.FC = () => {
   const { openModal, closeModal } = useModalStore()
 
-  const handlecreate = useCreateContact()
+  const handleCreate = useCreateContact()
 
   return (
     <CustomButton
@@ -19,7 +20,7 @@ const AddNewContactButton: React.FC = () => {
         openModal(
           <ContactForm
             onClose={closeModal}
-            onSubmit={handlecreate}
+            onSubmit={handleCreate}
             title="Add contact"
           />
         )

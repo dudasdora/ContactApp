@@ -1,24 +1,28 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  PropsWithChildren,
+  useCallback
+} from 'react'
 import { ModalContent, ModalContextType } from '../types'
 import CustomModal from '../ui/CustomModal'
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
-export const ModalProvider: React.FC<{ children: ReactNode }> = ({
-  children
-}) => {
+export const ModalProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [modalContent, setModalContent] = useState<ModalContent | null>(null)
 
-  const openModal = (content: ModalContent) => {
+  const openModal = useCallback((content: ModalContent) => {
     setIsOpen(true)
     setModalContent(content)
-  }
+  }, [])
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsOpen(false)
     setModalContent(null)
-  }
+  }, [])
 
   return (
     <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>

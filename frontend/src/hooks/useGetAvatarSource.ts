@@ -1,11 +1,14 @@
 import { useMemo } from 'react'
+import defaultImage from '../assets/contactImages/Default.png'
 
 export const useGetAvatarSource = (pictureUrl: string | null): string => {
+  const storageUrl = localStorage.getItem(`${pictureUrl}`)
+
   return useMemo(() => {
     return pictureUrl
-      ? localStorage.getItem(`${pictureUrl}`) !== null
-        ? `${localStorage.getItem(`${pictureUrl}`)}`
-        : pictureUrl
-      : require('../assets/contactImages/Default.png')
-  }, [pictureUrl])
+      ? storageUrl === null
+        ? pictureUrl
+        : storageUrl
+      : defaultImage
+  }, [pictureUrl, storageUrl])
 }

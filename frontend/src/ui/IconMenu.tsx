@@ -5,7 +5,7 @@ import {
   SvgIcon,
   Typography
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CustomButton from './CustomButton'
 
 interface ListAction {
@@ -35,16 +35,8 @@ const IconMenu: React.FC<IIconMenu> = ({
 
   const handlePopoverClose = () => {
     setAnchorEl(null)
+    onClose?.()
   }
-  const open = Boolean(anchorEl)
-
-  useEffect(() => {
-    if (open) {
-      onClick?.()
-    } else {
-      onClose?.()
-    }
-  }, [onClick, onClose, open])
 
   return (
     <>
@@ -57,7 +49,7 @@ const IconMenu: React.FC<IIconMenu> = ({
 
       <Menu
         elevation={1}
-        open={open}
+        open={Boolean(anchorEl)}
         onClick={() => setAnchorEl(null)}
         anchorEl={anchorEl}
         onClose={handlePopoverClose}

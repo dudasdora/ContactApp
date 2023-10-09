@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { deleteContact } from '../utils/deleteContat'
 import { Contact } from '../types'
 import { deletePicture } from '../utils/deletePicture'
+import { useCallback } from 'react'
 
 export const useDeleteContact = () => {
   const queryClient = useQueryClient()
@@ -13,18 +14,21 @@ export const useDeleteContact = () => {
     deleteContact(id)
   )
 
-  return async (contact: Contact) => {
-    if (contact.pictureUrl) {
-      await mutateDeletePicture(contact.pictureUrl).catch((error) => {
-        console.error('Error:', error)
-      })
-    }
-    await mutateDeleteContact(contact.id)
-      .then(() => {
-        queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
-      })
-      .catch((error) => {
-        console.error('Error', error)
-      })
-  }
+  return useCallback(
+    async (contact: Contact) => {
+      if (contact.pictureUrl) {
+        await mutateDeletePicture(contact.pictureUrl).catch((error) => {
+          console.error('Error:', error)
+        })
+      }
+      await mutateDeleteContact(contact.id)
+        .then(() => {
+          queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
+        })
+        .catch((error) => {
+          console.error('Error', error)
+        })
+    },
+    [mutateDeleteContact, mutateDeletePicture, queryClient]
+  )
 }
