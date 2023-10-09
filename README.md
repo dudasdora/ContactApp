@@ -8,7 +8,9 @@ Run the following commands in the root folder:
 
 `npm i`
 
-`npm install-all`
+`npm run install-all`
+
+`npm run generate-local-db`
 
 `npm run migrate-local-db`
 

@@ -3,6 +3,7 @@
     "install-backend": "cd backend && npm install",
     "install-frontend": "cd frontend && npm install",
     "install-all": "npm-run-all install-backend install-frontend",
+    "generate-local-db": "cd backend && npm run generate:sqlite",
     "migrate-local-db": "cd backend && npm run migrate:sqlite",
     "start-backend": "cd backend && nodemon index.ts",
     "start-frontend": "cd frontend && npm run start",
