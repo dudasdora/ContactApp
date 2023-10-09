@@ -4,26 +4,30 @@ import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
 import { ReactComponent as ChangeIcon } from '../../assets/icons/Change.svg'
 import { ReactComponent as AddIcon } from '../../assets/icons/Add.svg'
-import { usePicture } from '../../hooks/usePicture'
 import { UseFormSetValue } from 'react-hook-form'
 import { ContactFormData } from '../../types'
 import CustomButton from '../../ui/CustomButton'
 import CustomAvatar from '../../ui/CustomAvatar'
+import { storePictureLocal } from '../../utils/storePictureLocal'
 interface IPictureUpload {
   setValue: UseFormSetValue<ContactFormData>
-  defaultPictureUrl: string | null
+  setFile: any
+  pictureUrl: any
+  setPictureUrl: any
 }
 const PictureUpload: React.FC<IPictureUpload> = ({
   setValue,
-  defaultPictureUrl
-}) => {
-  const { setFile, pictureUrl, setPictureUrl } = usePicture(defaultPictureUrl)
 
+  setFile,
+  pictureUrl,
+  setPictureUrl
+}) => {
   useEffect(() => {
     setValue('pictureUrl', pictureUrl)
   }, [pictureUrl, setValue])
 
   const avatarSrc = useGetAvatarSource(pictureUrl)
+
   return (
     <Grid container spacing={2}>
       <Grid item xs="auto">
@@ -41,9 +45,10 @@ const PictureUpload: React.FC<IPictureUpload> = ({
             <input
               hidden
               type="file"
-              onChange={(e) => {
+              onChange={async (e) => {
                 if (e.target.files) {
                   setFile(e.target.files[0])
+                  setPictureUrl(await storePictureLocal(e.target.files[0]))
                 }
               }}
             />
@@ -53,7 +58,10 @@ const PictureUpload: React.FC<IPictureUpload> = ({
             <CustomButton
               variant="primary"
               content="icon"
-              onClick={() => setPictureUrl('')}
+              onClick={() => {
+                setPictureUrl(null)
+                setFile(null)
+              }}
               icon={DeleteIcon}
             />
           )}

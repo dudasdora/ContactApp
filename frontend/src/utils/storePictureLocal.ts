@@ -1,24 +1,20 @@
-const delay = async () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(1)
-    }, 1000)
-  })
-}
-
 export const storePictureLocal = async (file: Blob) => {
   const reader = new FileReader()
 
   const localStorageKey = new Date().getTime().toString()
 
-  reader.onload = (e: ProgressEvent<FileReader>) => {
-    const imageDataUrl = e?.target?.result as string
-    localStorage.setItem(localStorageKey, imageDataUrl)
-  }
+  const imageDataUrlPromise = new Promise<string>((resolve) => {
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      const imageDataUrl = event?.target?.result as string
+      resolve(imageDataUrl)
+    }
+  })
 
   reader.readAsDataURL(file)
 
-  await delay()
+  const imageDataUrl = await imageDataUrlPromise
 
-  return { data: { pictureUrl: localStorageKey } }
+  localStorage.setItem(localStorageKey, imageDataUrl)
+
+  return localStorageKey
 }

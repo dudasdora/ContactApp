@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Contact, ContactFormData } from '../../types'
@@ -12,7 +12,12 @@ interface IContactForm {
   contact?: Contact
   title: string
   onClose: () => void
-  onSubmit: (contact: ContactFormData) => void
+  onSubmit: (
+    contact: ContactFormData,
+    file: Blob | null,
+    pictureUrl: string | null,
+    originalContact?: Contact
+  ) => void
 }
 
 const ContactForm: React.FC<IContactForm> = ({
@@ -23,21 +28,33 @@ const ContactForm: React.FC<IContactForm> = ({
 }) => {
   const defaultValues = contactFormSchema.cast(contact)
 
-  const { handleSubmit, control, setValue } = useForm<ContactFormData>({
-    defaultValues,
-    resolver: yupResolver(contactFormSchema)
-  })
+  const [file, setFile] = useState<Blob | null>(null)
+  const [pictureUrl, setPictureUrl] = useState<string | null>(
+    defaultValues.pictureUrl
+  )
+
+  const { handleSubmit, control, setValue, getValues } =
+    useForm<ContactFormData>({
+      defaultValues,
+      resolver: yupResolver(contactFormSchema)
+    })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(() =>
+        onSubmit(getValues(), file, pictureUrl, contact)
+      )}
+    >
       <Grid container direction="column" spacing={3}>
         <Grid item>
           <Typography variant="h2">{title}</Typography>
         </Grid>
         <Grid item>
           <PictureUpload
+            setFile={setFile}
+            pictureUrl={pictureUrl}
             setValue={setValue}
-            defaultPictureUrl={defaultValues.pictureUrl}
+            setPictureUrl={setPictureUrl}
           />
         </Grid>
         <Grid item>

@@ -23,3 +23,17 @@ export const uploadImage = async (request: Request, response: Response) => {
     response.status(500).json({ error: 'Image upload failed' })
   }
 }
+export const deleteImage = async (request: Request, response: Response) => {
+  const deleteParams = {
+    Bucket: 'contact-app-bucket-dd',
+    Key: request.params.path
+  }
+
+  s3.deleteObject(deleteParams, (err, data) => {
+    if (err) {
+      response.status(500).json(err)
+    } else {
+      response.status(204).json(data)
+    }
+  })
+}

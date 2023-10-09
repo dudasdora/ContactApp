@@ -22,6 +22,8 @@ import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import CustomButton from '../../ui/CustomButton'
 import { useState } from 'react'
 import CustomAvatar from '../../ui/CustomAvatar'
+import { uploadPicture } from '../../utils/uploadPicture'
+import { deletePicture } from '../../utils/deletePicture'
 
 interface IContactListItem {
   contact: Contact
@@ -36,13 +38,17 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
 
   const avatarSrc = useGetAvatarSource(contact.pictureUrl)
 
-  const deleteContactmutation = useMutation(async (id: number) =>
+  const { mutateAsync: mutatedelete } = useMutation(async (id: number) =>
     deleteContact(id)
   )
 
-  const handleDelete = async (id: number) => {
-    await deleteContactmutation
-      .mutateAsync(id)
+  const handleDelete = async (contact: Contact) => {
+    if (contact.pictureUrl) {
+      await mutateDelete(contact.pictureUrl).catch((error) => {
+        console.error('Error:', error)
+      })
+    }
+    await mutatedelete(contact.id)
       .then(() => {
         queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
       })
@@ -51,13 +57,18 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       })
   }
 
-  const updateContactmutation = useMutation(async (contact: ContactFormData) =>
-    updateContact(contact)
+  const { mutateAsync: mutateUpdate } = useMutation(
+    async (contact: ContactFormData) => updateContact(contact)
   )
 
-  const handleUpdate = async (contact: ContactFormData) => {
-    await updateContactmutation
-      .mutateAsync(contact)
+  const { mutateAsync: mutateDelete } = useMutation(
+    async (pictureUrl: string) => deletePicture(pictureUrl)
+  )
+
+  const { mutateAsync: upload } = useMutation(uploadPicture)
+
+  const update = async (contact: ContactFormData) => {
+    await mutateUpdate(contact)
       .then(() => {
         queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
         closeModal()
@@ -65,6 +76,31 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       .catch((error) => {
         console.error('Error', error)
       })
+  }
+
+  const handleUpdate = async (
+    contact: ContactFormData,
+    file: Blob | null,
+    pictureUrl: string | null,
+    originalContact?: Contact
+  ) => {
+    console.log('originalContact?.pictureUrl', originalContact?.pictureUrl)
+
+    if (file !== null && originalContact?.pictureUrl) {
+      await mutateDelete(originalContact.pictureUrl).catch((error) => {
+        console.error('Error:', error)
+      })
+    }
+    if (file !== null && process.env.NODE_ENV === 'production') {
+      await upload(file)
+        .then((response) => response.data.pictureUrl)
+        .then((response) => update({ ...contact, pictureUrl: response }))
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    } else {
+      await update({ ...contact, pictureUrl })
+    }
   }
 
   return (
@@ -121,7 +157,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
               },
               {
                 icon: DeleteIcon,
-                onClick: () => handleDelete(contact.id),
+                onClick: () => handleDelete(contact),
                 text: 'Remove'
               }
             ]}
