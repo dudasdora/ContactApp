@@ -1,9 +1,11 @@
-import { Box, Button, ButtonProps, SvgIcon, Typography } from '@mui/material'
+import { Box, ButtonProps, SvgIcon, Typography } from '@mui/material'
 import React, { FunctionComponent, SVGProps } from 'react'
 import { CustomButtonContent, CustomButtonVariant } from '../types'
 import { useGetSxPropsForButton } from './styles/useGetSxPropsForButton'
+import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 
-interface ICustomButton extends Omit<ButtonProps, 'variant'> {
+interface ICustomButton
+  extends Omit<LoadingButtonProps & ButtonProps, 'variant'> {
   variant: CustomButtonVariant
   content: CustomButtonContent
   icon?: FunctionComponent<SVGProps<SVGSVGElement>>
@@ -16,12 +18,13 @@ const CustomButton: React.FC<ICustomButton> = ({
   icon,
   label,
   children,
+  loading,
   ...props
 }) => {
   const sx = useGetSxPropsForButton(variant)
 
   return (
-    <Button sx={sx} {...props}>
+    <LoadingButton loading={loading} sx={sx} {...props}>
       <Box
         sx={{
           display: 'flex',
@@ -45,7 +48,7 @@ const CustomButton: React.FC<ICustomButton> = ({
         )}
         {children}
       </Box>
-    </Button>
+    </LoadingButton>
   )
 }
 

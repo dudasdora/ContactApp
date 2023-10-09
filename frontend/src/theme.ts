@@ -15,6 +15,7 @@ const theme = createTheme({
   },
   spacing: 8,
   components: {
+    MuiCircularProgress: { styleOverrides: { root: { color: 'white' } } },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {

@@ -17,7 +17,7 @@ interface IContactForm {
     file: Blob | null,
     pictureUrl: string | null,
     originalContact?: Contact
-  ) => void
+  ) => Promise<void>
 }
 
 const ContactForm: React.FC<IContactForm> = ({
@@ -27,6 +27,8 @@ const ContactForm: React.FC<IContactForm> = ({
   contact
 }) => {
   const defaultValues = contactFormSchema.cast(contact)
+
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
   const [file, setFile] = useState<Blob | null>(null)
   const [pictureUrl, setPictureUrl] = useState<string | null>(
@@ -39,12 +41,15 @@ const ContactForm: React.FC<IContactForm> = ({
       resolver: yupResolver(contactFormSchema)
     })
 
+  const submit = () => {
+    setIsSubmitting(true)
+    onSubmit(getValues(), file, pictureUrl, contact).then(() =>
+      setIsSubmitting(false)
+    )
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(() =>
-        onSubmit(getValues(), file, pictureUrl, contact)
-      )}
-    >
+    <form onSubmit={handleSubmit(submit)}>
       <Grid container direction="column" spacing={3}>
         <Grid item>
           <Typography variant="h2">{title}</Typography>
@@ -106,6 +111,7 @@ const ContactForm: React.FC<IContactForm> = ({
               label="Cancel"
             />
             <CustomButton
+              loading={isSubmitting}
               variant="primary"
               content="label"
               type="submit"
