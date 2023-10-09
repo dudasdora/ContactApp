@@ -16,8 +16,8 @@ export const useCreateContact = () => {
   const { mutateAsync: upload } = useMutation(uploadPicture)
 
   const create = useCallback(
-    (contact: ContactFormData) => {
-      mutateCreate(contact)
+    async (contact: ContactFormData) => {
+      await mutateCreate(contact)
         .then(() => {
           queryClient.invalidateQueries({ queryKey: ['contact', 'list'] })
           closeModal()
@@ -36,14 +36,17 @@ export const useCreateContact = () => {
       pictureUrl: string | null
     ) => {
       if (file !== null && process.env.NODE_ENV === 'production') {
-        upload(file)
+        await upload(file)
           .then((response) => response.data.pictureUrl)
-          .then((response) => create({ ...contact, pictureUrl: response }))
+          .then(
+            async (response) =>
+              await create({ ...contact, pictureUrl: response })
+          )
           .catch((error) => {
             console.error('Error:', error)
           })
       } else {
-        create({ ...contact, pictureUrl: pictureUrl })
+        await create({ ...contact, pictureUrl: pictureUrl })
       }
     },
     [create, upload]
