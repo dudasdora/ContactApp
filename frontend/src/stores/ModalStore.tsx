@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
-import { Fade, Modal, Paper } from '@mui/material'
-import { AnimatePresence, motion } from 'framer-motion'
 import { ModalContent, ModalContextType } from '../types'
+import CustomModal from '../ui/CustomModal'
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
@@ -24,38 +23,9 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
       {children}
-      <AnimatePresence>
-        {isOpen && (
-          <Modal open={isOpen} onClose={closeModal} sx={{ overflow: 'scroll' }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{
-                duration: 0.2,
-                ease: [0.17, 0.67, 0.83, 0.67],
-                scale: {
-                  restDelta: 0.5
-                }
-              }}
-            >
-              <Fade in={isOpen}>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    width: '316px',
-                    height: 'fit-content',
-                    padding: '24px',
-                    borderRadius: `8px`
-                  }}
-                >
-                  {modalContent}
-                </Paper>
-              </Fade>
-            </motion.div>
-          </Modal>
-        )}
-      </AnimatePresence>
+      <CustomModal isOpen={isOpen} closeModal={closeModal}>
+        {modalContent}
+      </CustomModal>
     </ModalContext.Provider>
   )
 }
