@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/Delete.svg'
@@ -8,6 +8,7 @@ import { usePicture } from '../../hooks/usePicture'
 import { UseFormSetValue } from 'react-hook-form'
 import { ContactFormData } from '../../types'
 import CustomButton from '../../ui/CustomButton'
+import CustomAvatar from '../../ui/CustomAvatar'
 interface IPictureUpload {
   setValue: UseFormSetValue<ContactFormData>
   defaultPictureUrl: string | null
@@ -22,11 +23,11 @@ const PictureUpload: React.FC<IPictureUpload> = ({
     setValue('pictureUrl', pictureUrl)
   }, [pictureUrl, setValue])
 
-  const src = useGetAvatarSource(pictureUrl)
+  const avatarSrc = useGetAvatarSource(pictureUrl)
   return (
     <Grid container spacing={2}>
       <Grid item xs="auto">
-        <Avatar src={src} sx={{ width: '88px', height: '88px' }} />
+        <CustomAvatar src={avatarSrc} sx={{ width: '88px', height: '88px' }} />
       </Grid>
       <Grid item xs alignSelf="center">
         <Box display="flex" justifyContent="space-between">

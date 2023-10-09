@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   ListItem,
   ListItemAvatar,
@@ -22,6 +21,7 @@ import { useModalStore } from '../../stores/ModalStore'
 import { useGetAvatarSource } from '../../hooks/useGetAvatarSource'
 import CustomButton from '../../ui/CustomButton'
 import { useState } from 'react'
+import CustomAvatar from '../../ui/CustomAvatar'
 
 interface IContactListItem {
   contact: Contact
@@ -34,7 +34,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
 
   const { openModal, closeModal } = useModalStore()
 
-  const src = useGetAvatarSource(contact.pictureUrl)
+  const avatarSrc = useGetAvatarSource(contact.pictureUrl)
 
   const deleteContactmutation = useMutation(async (id: number) =>
     deleteContact(id)
@@ -79,7 +79,7 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
       }}
     >
       <ListItemAvatar>
-        <Avatar src={src} />
+        <CustomAvatar src={avatarSrc} />
       </ListItemAvatar>
       <ListItemText primary={contact.name} secondary={contact.phone} />
       <Box
