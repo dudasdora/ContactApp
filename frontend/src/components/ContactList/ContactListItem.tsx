@@ -74,7 +74,8 @@ const ContactListItem: React.FC<IContactListItem> = ({ contact }) => {
           '& .secondaryActionsFocus': {
             opacity: 100
           }
-        }
+        },
+        padding: '12px 0'
       }}
     >
       <ListItemAvatar>
