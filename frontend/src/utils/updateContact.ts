@@ -4,12 +4,12 @@ import { ContactFormData } from '../types'
 const apiUrl = config.apiUrl
 
 export const updateContact = async (contact: ContactFormData) => {
-  const res = await fetch(`${apiUrl}/contact/${contact.id}`, {
+  const response = await fetch(`${apiUrl}/contact/${contact.id}`, {
     method: 'PUT',
     body: JSON.stringify(contact),
     headers: {
       'Content-Type': 'application/json'
     }
   })
-  return res.json()
+  return response.json()
 }

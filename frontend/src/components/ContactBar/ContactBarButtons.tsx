@@ -3,6 +3,7 @@ import { ReactComponent as SettingsIcon } from '../../assets/icons/Settings.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/icons/Profile pic.svg'
 import AddNewContactButton from './AddNewContactButton'
 import CustomButton from '../../ui/CustomButton'
+import React from 'react'
 
 const ContactBarButtons: React.FC = () => {
   return (

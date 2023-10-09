@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material'
+import React from 'react'
 
 const ContactTitle: React.FC = () => {
   return (

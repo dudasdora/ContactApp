@@ -12,7 +12,7 @@ const ContactList: React.FC = () => {
 
   return (
     <Grid container spacing={1}>
-      <Grid item xs={1}></Grid>
+      <Grid item xs={1} />
       <Grid item xs={10}>
         {isLoading ? (
           <div>
@@ -30,7 +30,7 @@ const ContactList: React.FC = () => {
           </List>
         )}
       </Grid>
-      <Grid item xs={1}></Grid>
+      <Grid item xs={1} />
     </Grid>
   )
 }

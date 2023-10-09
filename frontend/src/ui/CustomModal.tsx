@@ -1,5 +1,5 @@
 import { Fade, Modal, Paper } from '@mui/material'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const CustomModal: React.FC<{
