@@ -38,6 +38,11 @@ const IconMenu: React.FC<IIconMenu> = ({
     onClose?.()
   }
 
+  const onItemClick = () => {
+    setAnchorEl(null)
+    onClose?.()
+  }
+
   return (
     <>
       <CustomButton
@@ -50,7 +55,7 @@ const IconMenu: React.FC<IIconMenu> = ({
       <Menu
         elevation={1}
         open={Boolean(anchorEl)}
-        onClick={() => setAnchorEl(null)}
+        onClick={onItemClick}
         anchorEl={anchorEl}
         onClose={handlePopoverClose}
         anchorOrigin={{
