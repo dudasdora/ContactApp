@@ -43,7 +43,6 @@ export const useUpdateContact = () => {
       console.log(process.env.NODE_ENV)
 
       if (
-        file !== null &&
         originalContact?.pictureUrl &&
         process.env.NODE_ENV === 'production'
       ) {
