@@ -49,7 +49,12 @@ const PictureUpload: React.FC<IPictureUpload> = ({
             icon={pictureUrl ? ChangeIcon : AddIcon}
             label={pictureUrl ? 'Change picture' : 'Add picture'}
           >
-            <input hidden type="file" onChange={handleChangeFile} />
+            <input
+              hidden
+              type="file"
+              onChange={handleChangeFile}
+              accept=".jpg, .jpeg, .png, .svg"
+            />
           </CustomButton>
 
           {!!pictureUrl && (
