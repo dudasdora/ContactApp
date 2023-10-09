@@ -40,7 +40,13 @@ export const useUpdateContact = () => {
       pictureUrl: string | null,
       originalContact?: Contact
     ) => {
-      if (file !== null && originalContact?.pictureUrl) {
+      console.log(process.env.NODE_ENV)
+
+      if (
+        file !== null &&
+        originalContact?.pictureUrl &&
+        process.env.NODE_ENV === 'production'
+      ) {
         await mutateDeletePicture(originalContact.pictureUrl).catch((error) => {
           console.error('Error:', error)
         })

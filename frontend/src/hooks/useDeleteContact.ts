@@ -16,7 +16,7 @@ export const useDeleteContact = () => {
 
   return useCallback(
     async (contact: Contact) => {
-      if (contact.pictureUrl) {
+      if (contact.pictureUrl && process.env.NODE_ENV === 'production') {
         await mutateDeletePicture(contact.pictureUrl).catch((error) => {
           console.error('Error:', error)
         })
