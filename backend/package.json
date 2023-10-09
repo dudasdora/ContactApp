@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "prisma generate && vercel --prod",
-    "vercel-build": "prisma generate",
+    "migrate:sqlite": "npx prisma migrate dev --name sqlite-init --schema=./prisma/sqlite/schema.prisma",
+    "migrate:postgres": "npx prisma migrate dev --name postgres-init --schema=./prisma/postgres/schema.prisma",
+    "vercel-build": "prisma generate --schema=./prisma/postgres/schema.prisma",
     "start": "nodemon index.ts"
   },
   "keywords": [],
