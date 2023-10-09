@@ -24,7 +24,7 @@ const ContactList: React.FC = () => {
           </div>
         ) : (
           <List>
-            {contacts.map((contact) => (
+            {contacts?.map((contact) => (
               <ContactListItem contact={contact} key={contact.id} />
             ))}
           </List>
